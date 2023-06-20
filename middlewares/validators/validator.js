@@ -11,3 +11,5 @@ const validatorBusiness = [
         return validateResult(req, res, next)
     }
 ]
+
+model.exports = {validatorBusiness}

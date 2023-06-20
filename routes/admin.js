@@ -1,14 +1,14 @@
 /**
  * Funtionalities:
- * Upload businesses
- * 
- * 
- * 
+ * POST businesses (just with "basic" data)
+ * PUT business, editing all data, except score and such 
+ * DELETE business
+ * MAYBE GET bussiness (copy from when making user) TODO 
  */
 
 const express = require("express")
 const {validateBusiness} = require("../middleware/validator") // TODO get these routes right
-const {createBusiness, editBusiness} = require("../controllers/")
+const {createBusiness, editBusiness, deleteBusiness} = require("../controllers/admin")
 
 const router = express.Router()
 router.use(express.json())
@@ -20,6 +20,6 @@ router.post("/uploadBusiness", validateBusiness, createBusiness)
 router.put("/editBusiness/:id", validateBusiness, editBusiness)
 
 // Delete preexisting business
-router.delete("/editBusiness/:id", validateBusiness, deleteBusiness)
+router.delete("/editBusiness/:id", deleteBusiness)
 
 module.exports = router
