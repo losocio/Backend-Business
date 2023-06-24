@@ -1,5 +1,4 @@
 const {validationResult} = require("express-validator")
-const { model } = require("mongoose")
 
 const validateResultsUtil = (req, res, next) => {
     try {

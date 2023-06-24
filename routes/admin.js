@@ -14,12 +14,13 @@ const router = express.Router()
 router.use(express.json())
 
 // Upload new businesses to the website
-router.post("/uploadBusiness", validateBusiness, createBusiness)
+// Here I can pass an array of validators chains and the router package will recognice it and run them secuencially. This isnt normal JS behaviour 
+router.post("/uploadBusiness", validateBusiness, createBusiness) 
 
 // Edit preexisting business
 router.put("/editBusiness/:id", validateBusiness, editBusiness)
 
 // Delete preexisting business
-router.delete("/editBusiness/:id", deleteBusiness)
+router.delete("/deleteBusiness/:id", deleteBusiness)
 
 module.exports = router
