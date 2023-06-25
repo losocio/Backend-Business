@@ -21,6 +21,12 @@ router.post("/uploadBusiness", validateBusiness, createBusiness)
 router.put("/editBusiness/:id", validateBusiness, editBusiness)
 
 // Delete preexisting business
-router.delete("/deleteBusiness/:id", deleteBusiness)
+router.delete("/deleteBusiness/:id", getBusiness)
 
-module.exports = router
+// Get all the businesses
+// TODO router.use() from GETBusiness
+
+// Get a business by it's id
+// TODO router.use() from GETBusiness
+
+module.exports = { router }

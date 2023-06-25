@@ -1,0 +1,37 @@
+### TEST
+
+GET http://localhost:3000/api/test HTTP/1.1
+
+###
+
+GET http://localhost:3000/api/getBusiness HTTP/1.1
+
+###
+
+GET http://localhost:3000/api/getBusiness?order=score HTTP/1.1
+
+###
+
+GET http://localhost:3000/api/getBusiness?id=1 HTTP/1.1
+
+###
+
+GET http://localhost:3000/api/getBusiness?id=1&order=score HTTP/1.1
+
+###
+
+GET http://localhost:3000/api/getBusiness?city=Madrid HTTP/1.1
+
+###
+
+GET http://localhost:3000/api/getBusiness?city=Madrid&order=score HTTP/1.1
+
+###
+
+GET http://localhost:3000/api/getBusiness?city=Madrid&activity=transport HTTP/1.1
+
+###
+
+GET http://localhost:3000/api/getBusiness?city=Madrid&activity=transport&order=score HTTP/1.1
+
+###

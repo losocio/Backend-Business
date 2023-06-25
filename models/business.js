@@ -1,6 +1,10 @@
 const mongoose = require("mongoose")
 const UserSchema = new mongoose.Schema(
     {
+        /*id: {
+            type: Number,
+            unique: true
+        },*/
         name: {
             type: String,
             required: true
@@ -24,7 +28,7 @@ const UserSchema = new mongoose.Schema(
         city: {
             type: String
         },
-        activity: {
+        activities: {
             type: String,
             enum: ["", ""] // TODO add types of businesses
         },

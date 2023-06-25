@@ -1,14 +1,17 @@
 const mongoose = require("mongoose")
 const UserSchema = new mongoose.Schema(
     {
+        /*id: {
+            type: Number,
+            unique: true
+        },*/
         name: {
             type: String,
             required: true
         },
         email: {
             type: String,
-            required: true,
-            unique: true
+            required: true
         },
         age: {
             type: Number,
@@ -27,7 +30,7 @@ const UserSchema = new mongoose.Schema(
             enum: ["",""],
             required: true // TODO add different types of bussinesses
         },
-        recivesOffers: {
+        receivesOffers: {
             type: Boolean,
             required: true
         }
@@ -38,4 +41,4 @@ const UserSchema = new mongoose.Schema(
     }
 )
 
-module.exports = mongoose.model("user", UserSchema) 
+module.exports = mongoose.model("UserModel", UserSchema) 

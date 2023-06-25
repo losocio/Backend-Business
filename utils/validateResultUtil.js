@@ -1,6 +1,6 @@
 const {validationResult} = require("express-validator")
 
-const validateResultsUtil = (req, res, next) => {
+const validateResultUtil = (req, res, next) => {
     try {
         validationResult(req).throw() // TODO understand
         // I think req contains the validated data (unchanged if correct), throw throws error if not validated
@@ -11,4 +11,4 @@ const validateResultsUtil = (req, res, next) => {
     }
 }
 
-module.exports = validateResultsUtil
+module.exports = { validateResultUtil }
