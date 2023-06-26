@@ -4,7 +4,7 @@
  */
 
 const mongoose = require("mongoose")
-const UserSchema = new mongoose.Schema(
+const BusinessSchema = new mongoose.Schema(
     {
         name: {
             type: String,
@@ -76,8 +76,8 @@ const UserSchema = new mongoose.Schema(
 )
 
 // Virtual field, it get computed from other fields from the db
-UserSchema.virtual("score").get(() => {
+BusinessSchema.virtual("score").get(() => {
     return (this.votesPositive / this.votes) * 100
 })
 
-module.exports = mongoose.model("user", UserSchema)
+module.exports = mongoose.model("BusinessModel", BusinessSchema)
