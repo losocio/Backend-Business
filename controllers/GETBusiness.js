@@ -1,3 +1,8 @@
+/*
+Controllers to fetch Business data from DB
+
+*/
+
 const getBusiness = async (req, res) => {
     try {
         const data = "/getBusinessController"
@@ -7,4 +12,13 @@ const getBusiness = async (req, res) => {
     }
 }
 
-module.exports = { getBusiness }
+const getBusinessID = async (req, res) => {
+    try {
+        const data = "/getBusinessController"
+        res.send(data)
+    } catch(err) {
+
+    }
+}
+
+module.exports = { getBusiness, getBusinessID }

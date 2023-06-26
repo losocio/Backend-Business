@@ -1,7 +1,8 @@
 const { matchedData } = require("express-validator")
 const { UserModel } = require("./models/user.js")
+const fs = require("fs")
 
-const createBusiness = async (req, res) => {
+const registerBusiness = async (req, res) => {
     try {
         const incomingData = matchedData(req)
         /*
@@ -26,11 +27,25 @@ const createBusiness = async (req, res) => {
 }
 
 const deleteBusiness = async (req, res) => {
-    try {
+    try{
+        const {id} = matchedData(req)
 
-    } catch(err) {
+        const dataFile = await UserModel.findById(id)
 
+        await UserModel.deleteOne({_id:id})
+
+        const filePath = MEDIA_PATH + "/" + dataFile.filename
+        fs.unlinkSync(filePath)
+        
+        const data = {
+            filePath,
+            deleted: true
+        }
+        res.send(data)
+    } catch(err){
+        //console.log(err)
+        //handleHttpError(res, "ERROR_GET_ITEM")
     }
 }
 
-module.exports = { createBusiness, deleteBusiness }
+module.exports = { registerBusiness, deleteBusiness }

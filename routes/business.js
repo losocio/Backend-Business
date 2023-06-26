@@ -1,32 +1,31 @@
 const express = require("express")
-const {validateBusiness} = require("../middleware/validator") // TODO get these routes right
-const {createBusiness, editBusiness, deleteBusiness} = require("../controllers/admin")
+//const {validateBusiness} = require("../middleware/validator") // TODO get these routes right
+const {editBusiness, deleteBusiness} = require("../controllers/business")
 
-const router = express.Router()
-router.use(express.json())
+const routerBusiness = express.Router()
+routerBusiness.use(express.json())
 
-//
-router.put("/updateBusinessInfo", validateBusiness, createBusiness) 
+// Finish defineing business
+routerBusiness.patch("/updateBusinessInfo", editBusiness) 
 
-// 
-router.put("/updateBusinessPhotos/:id", validateBusiness, editBusiness)
+// Add photos to business
+routerBusiness.patch("/updateBusinessPhotos?id=id", editBusinessPhotos)
 
-//
-router.put("/updateBusinessTexts/", getBusiness)
+// Add texts to business
+routerBusiness.patch("/updateBusinessTexts?id=id", editBusinessTexts)
 
-//
-router.delete("/deleteBusiness/:id", getBusiness)
+// Delete business
+routerBusiness.delete("/deleteBusiness?id=id", deleteBusiness)
 
-//
-router.use() // TODO use general common business GETs
-//router.get("/getBusiness/:city/:activity", deleteBusiness) // research got to use multiple params/queries
+// Get mailing list
+routerBusiness.get("/getMailingList?id=id&activity=activity", getMailingList)
 
-module.exports = { router }
+module.exports = routerBusiness
 
-/**
-- [ ] PUT info into business (needs JWT)
-- [ ] PUT business photos (needs JWT)
-- [ ] PUT business text (needs JWT)
+/*
+- [ ] PATCH info into business (needs JWT)
+- [ ] PATCH business photos (needs JWT)
+- [ ] PATCH business text (needs JWT)
 - [ ] DELETE business (needs JWT)
 - [ ] GET email of users from same city that want to recibe info about a specific activity (needs JWT)
- */
+*/

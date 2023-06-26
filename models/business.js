@@ -1,10 +1,11 @@
+/**
+ * The required fields are to be created/edited by the admin exclusively
+ * 
+ */
+
 const mongoose = require("mongoose")
 const UserSchema = new mongoose.Schema(
     {
-        /*id: {
-            type: Number,
-            unique: true
-        },*/
         name: {
             type: String,
             required: true
@@ -26,11 +27,23 @@ const UserSchema = new mongoose.Schema(
             required: true
         },
         city: {
-            type: String
-        },
-        activities: {
             type: String,
-            enum: ["", ""] // TODO add types of businesses
+            required: true
+        },
+        activity: {
+            type: String,
+            enum: [
+                'Retail',
+                'Food and Beverage',
+                'Professional Services',
+                'Health and Wellness',
+                'Hospitality and Tourism',
+                'Technology and Software',
+                'Manufacturing and Industrial',
+                'Arts and Entertainment',
+                'Education and Training',
+                'Financial and Banking'
+            ]
         },
         title: {
             type: String

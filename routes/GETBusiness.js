@@ -1,17 +1,16 @@
 const express = require("express")
 //const {validateBusiness} = require("../middlewares/validatorsPOSTPUT/validatorBusiness.js") // TODO get these routes right
-const {getBusiness} = require("../controllers/GETBusiness.js") // TODO get this right
+const {getBusiness} = require("../controllers/GETBusiness.js")
 
 const routerGETBusiness = express.Router()
 routerGETBusiness.use(express.json())
 
-// Imma implement all the business fetching in one file
-
-// TODOD TEST
+// TODO TEST
 routerGETBusiness.get("/test", (req, res) => {
     res.send("TEST SUCCESS")
 });
 
+// TODO use proper functions on routes
 // GET all the businesses
 routerGETBusiness.get("/getBusiness", getBusiness)
 
@@ -30,7 +29,7 @@ routerGETBusiness.get("/getBusiness?city=city", getBusiness)
 // GET businesses that match a city, ordered by score
 routerGETBusiness.get("/getBusiness?city=city&order=order", getBusiness)
 
-// I could add a search just by activity
+// TODO I could add a search just by activity
 
 // GET businesses that match a city and an
 routerGETBusiness.get("/getBusiness?city=city&activity=activity", getBusiness)

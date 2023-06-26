@@ -1,32 +1,31 @@
-/**
- * Funtionalities:
- * POST businesses (just with "basic" data)
- * PUT business, editing all data, except score and such 
- * DELETE business
- * MAYBE GET bussiness (copy from when making user) TODO 
- */
-
 const express = require("express")
-const {validateBusiness} = require("../middleware/validator") // TODO get these routes right
-const {createBusiness, editBusiness, deleteBusiness} = require("../controllers/admin")
+//const {validateBusiness} = require("../middleware/validator.js") // TODO get these routes right
+const {registerBusiness, editBusiness, deleteBusiness} = require("../controllers/admin.js")
+const {routerGETBusiness} = require("./GETBusiness.js")
 
-const router = express.Router()
-router.use(express.json())
+const routerAdmin = express.Router()
+routerAdmin.use(express.json())
 
 // Upload new businesses to the website
 // Here I can pass an array of validators chains and the router package will recognice it and run them secuencially. This isnt normal JS behaviour 
-router.post("/uploadBusiness", validateBusiness, createBusiness) 
+routerAdmin.post("/uploadBusiness", registerBusiness) 
 
 // Edit preexisting business
-router.put("/editBusiness/:id", validateBusiness, editBusiness)
+routerAdmin.put("/editBusiness?id=id", editBusiness)
 
 // Delete preexisting business
-router.delete("/deleteBusiness/:id", getBusiness)
+routerAdmin.delete("/deleteBusiness?id=id", deleteBusiness)
 
-// Get all the businesses
-// TODO router.use() from GETBusiness
+// Get businesses in multiple ways
+routerAdmin.use(routerGETBusiness)
+//routerAdmin.use("/", routerGETBusiness)
 
-// Get a business by it's id
-// TODO router.use() from GETBusiness
+module.exports = routerAdmin
 
-module.exports = { router }
+/*
+- [ ] POST Upload business (needs JWT) (creates JWT for Business)
+- [ ] PUT Modify business (needs JWT)
+- [ ] GET all businesses (needs JWT)
+- [ ] GET business by id (needs JWT)
+- [ ] DELETE business (needs JWT)
+*/

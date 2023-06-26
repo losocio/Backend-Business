@@ -1,10 +1,6 @@
 const mongoose = require("mongoose")
 const UserSchema = new mongoose.Schema(
     {
-        /*id: {
-            type: Number,
-            unique: true
-        },*/
         name: {
             type: String,
             required: true
@@ -26,12 +22,24 @@ const UserSchema = new mongoose.Schema(
             required: true
         },
         interests: {
-            type: String,
-            enum: ["",""],
-            required: true // TODO add different types of bussinesses
+            type: [String],
+            enum: [
+                'Retail',
+                'Food and Beverage',
+                'Professional Services',
+                'Health and Wellness',
+                'Hospitality and Tourism',
+                'Technology and Software',
+                'Manufacturing and Industrial',
+                'Arts and Entertainment',
+                'Education and Training',
+                'Financial and Banking'
+            ],
+            required: true
         },
         receivesOffers: {
             type: Boolean,
+            default: false,
             required: true
         }
     },
