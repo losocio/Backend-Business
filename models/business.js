@@ -52,18 +52,18 @@ const BusinessSchema = new mongoose.Schema(
             type: String
         },
         images: {
-            type: [String], // Array of image URLs
-            required: true
+            type: [String]
         },
         texts: {
-            type: [String], // Array of text
-            required: true
+            type: [String]
         },
         votes: {
-            type: Number
+            type: Number,
+            default: 0
         },
         votesPositive: {    
-            type: Number
+            type: Number,
+            default: 0
         },
         reviews: {
             type: [String]
@@ -71,13 +71,18 @@ const BusinessSchema = new mongoose.Schema(
     },
     {
         timestamp: true,
-        versionKey: false
+        versionKey: false,
+        toJSON: { getters: true }
     }
 )
 
 // Virtual field, it get computed from other fields from the db
 BusinessSchema.virtual("score").get(() => {
-    return (this.votesPositive / this.votes) * 100
+    if (this.votes === 0) {
+        return 0
+    }
+    const percentage = (this.votesPositive / this.votes) * 100
+    return Math.round(percentage)
 })
 
 module.exports = mongoose.model("Business", BusinessSchema)

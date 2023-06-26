@@ -2,63 +2,63 @@ const express = require("express")
 //const {validateBusiness} = require("../middlewares/validatorsPOSTPUT/validatorBusiness.js") // TODO get these routes right
 const { getBusiness, getBusinessById, getBusinessByCity, getBusinessByCityByActivity } = require("../controllers/getBusiness.js")
 
-const routerGETBusiness = express.Router()
-routerGETBusiness.use(express.json())
+const routerGetBusiness = express.Router()
+routerGetBusiness.use(express.json())
 
 // TODO TEST
-routerGETBusiness.get("/test", (req, res) => {
+routerGetBusiness.get("/test", (req, res) => {
     res.send("TEST SUCCESS")
 });
 
 // Each function will check if it need to order the data and will act accordingly (in this files controller)
 // GET all the businesses
-routerGETBusiness.get("/getBusiness", getBusiness)
+routerGetBusiness.get("/getBusiness", getBusiness)
 
 // GET all the businesses, ordered by score
-routerGETBusiness.get("/getBusiness?order=order", getBusiness)
+routerGetBusiness.get("/getBusiness?order=order", getBusiness)
 
 // GET a business by it's id
-routerGETBusiness.get("/getBusiness?id=id", getBusinessById)
+routerGetBusiness.get("/getBusiness?id=id", getBusinessById)
 
 // GET a business by it's id, ordered by score
-routerGETBusiness.get("/getBusiness?id=id&order=order", getBusinessById)
+routerGetBusiness.get("/getBusiness?id=id&order=order", getBusinessById)
 
 // GET businesses that match a city
-routerGETBusiness.get("/getBusiness?city=city", getBusinessByCity)
+routerGetBusiness.get("/getBusiness?city=city", getBusinessByCity)
 
 // GET businesses that match a city, ordered by score
-routerGETBusiness.get("/getBusiness?city=city&order=order", getBusinessByCity)
+routerGetBusiness.get("/getBusiness?city=city&order=order", getBusinessByCity)
 
 // TODO I could add a search just by activity
 
 // GET businesses that match a city and an
-routerGETBusiness.get("/getBusiness?city=city&activity=activity", getBusinessByCityByActivity)
+routerGetBusiness.get("/getBusiness?city=city&activity=activity", getBusinessByCityByActivity)
 
 // GET businesses that match a city and an, ordered by score
-routerGETBusiness.get("/getBusiness?city=city&activity=activity&order=order", getBusinessByCityByActivity)
+routerGetBusiness.get("/getBusiness?city=city&activity=activity&order=order", getBusinessByCityByActivity)
 
 
 /*
 // GET a business by it's id
-routerGETBusiness.get("/getBusiness/:id", getBusiness)
+routerGetBusiness.get("/getBusiness/:id", getBusiness)
 
 // GET a business by it's id, ordered by score
-routerGETBusiness.get("/getBusiness/:id", getBusiness)
+routerGetBusiness.get("/getBusiness/:id", getBusiness)
 
 // GET businesses that match a city
-routerGETBusiness.get("/getBusiness/search/:city", getBusiness)
+routerGetBusiness.get("/getBusiness/search/:city", getBusiness)
 
 // GET businesses that match a city, ordered by score
-routerGETBusiness.get("/getBusiness/search/:city", getBusiness)
+routerGetBusiness.get("/getBusiness/search/:city", getBusiness)
 
 // GET businesses that match a city and an
-routerGETBusiness.get("/getBusiness/search/:city/:activity", getBusiness)
+routerGetBusiness.get("/getBusiness/search/:city/:activity", getBusiness)
 
 // GET businesses that match a city and an, ordered by score
-routerGETBusiness.get("/getBusiness/search/:city/:activity", getBusiness)
+routerGetBusiness.get("/getBusiness/search/:city/:activity", getBusiness)
 */
 
-module.exports = { routerGETBusiness }
+module.exports = { routerGetBusiness }
 
 /*
 - [ ] GET all business

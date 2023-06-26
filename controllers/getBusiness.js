@@ -12,11 +12,15 @@ const getBusiness = async (req, res) => {
 
         switch(order) {
             case undefined:
-                const data = await Business.find(query)
+                console.log("getBusiness zaza")
+                const data = await Business.find(query).lean("score").exec() // TODO this chatGPT answer might be wrong
+                console.log(data)
                 res.send(data)
                 break
             case "score":
-                const dataToSort = await Business.find(query)
+                console.log("getBusiness zaza order")
+                const dataToSort = await Business.find(query).lean("score").exec()
+                console.log(dataToSort)
                 res.send(dataToSort.sort((a, b) => a.score - b.score))
                 break
             default: throw new BadRequestError("Invalid order parameter")
@@ -27,12 +31,13 @@ const getBusiness = async (req, res) => {
 }
 
 const getBusinessById = async (req, res) => {
+    console.log("getBusinessById zaza")
     try {
         const order = req.query.order
         const id = req.query.id
         switch(order) {
             case undefined:
-                const data = await Business.findById(id)
+                const data = await Business.findById(id).lean("score").exec()
                 if (data) {
                     res.send(data)
                 } else {
@@ -40,7 +45,7 @@ const getBusinessById = async (req, res) => {
                 }
                 break
             case "score":
-                const dataToSort = await Business.findById(id)
+                const dataToSort = await Business.findById(id).lean("score").exec()
                 if (dataToSort) {
                     res.send(dataToSort.sort((a, b) => a.score - b.score))
                 } else {
@@ -63,7 +68,7 @@ const getBusinessByCity = async (req, res) => {
 
         switch(order) {
             case undefined:
-                const data = await Business.find(query)
+                const data = await Business.find(query).lean("score").exec()
                 if (data) {
                     res.send(data)
                 } else {
@@ -71,7 +76,7 @@ const getBusinessByCity = async (req, res) => {
                 }
                 break
             case "score":
-                const dataToSort = await Business.find(query)
+                const dataToSort = await Business.find(query).lean("score").exec()
                 if (dataToSort) {
                     res.send(dataToSort.sort((a, b) => a.score - b.score))
                 } else {
@@ -95,7 +100,7 @@ const getBusinessByCityByActivity = async (req, res) => {
 
         switch(order) {
             case undefined:
-                const data = await Business.find(query)
+                const data = await Business.find(query).lean("score").exec()
                 if (data) {
                     res.send(data)
                 } else {
@@ -103,7 +108,7 @@ const getBusinessByCityByActivity = async (req, res) => {
                 }
                 break
             case "score":
-                const dataToSort = await Business.find(query)
+                const dataToSort = await Business.find(query).lean("score").exec()
                 if (dataToSort) {
                     res.send(dataToSort.sort((a, b) => a.score - b.score))
                 } else {
@@ -123,5 +128,3 @@ module.exports = {
     getBusinessByCity, 
     getBusinessByCityByActivity
 }
-
-//Lelystad MongoDB id: 6499a6159113dc84a1aa8401
