@@ -10,7 +10,7 @@ const dbURI = process.env.DB_URI
 dbConnect(dbURI)
 
 
-const {routerGETBusiness} = require("./routes/GETBusiness.js")
+const {routerGETBusiness} = require("./routes/getBusiness.js")
 app.use("/api", routerGETBusiness) // TODO for testing, this will be imported by other routers
 
 

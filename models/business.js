@@ -80,4 +80,4 @@ BusinessSchema.virtual("score").get(() => {
     return (this.votesPositive / this.votes) * 100
 })
 
-module.exports = mongoose.model("BusinessModel", BusinessSchema)
+module.exports = mongoose.model("Business", BusinessSchema)

@@ -12,26 +12,26 @@ GET http://localhost:3000/api/getBusiness?order=score HTTP/1.1
 
 ###
 
-GET http://localhost:3000/api/getBusiness?id=1 HTTP/1.1
+GET http://localhost:3000/api/getBusiness?id=6499a6159113dc84a1aa8401 HTTP/1.1
 
 ###
 
-GET http://localhost:3000/api/getBusiness?id=1&order=score HTTP/1.1
+GET http://localhost:3000/api/getBusiness?id=6499a6159113dc84a1aa8401&order=score HTTP/1.1
 
 ###
 
-GET http://localhost:3000/api/getBusiness?city=Madrid HTTP/1.1
+GET http://localhost:3000/api/getBusiness?city=Lelystad HTTP/1.1
 
 ###
 
-GET http://localhost:3000/api/getBusiness?city=Madrid&order=score HTTP/1.1
+GET http://localhost:3000/api/getBusiness?city=Lelystad&order=score HTTP/1.1
 
 ###
 
-GET http://localhost:3000/api/getBusiness?city=Madrid&activity=transport HTTP/1.1
+GET http://localhost:3000/api/getBusiness?city=Lelystad&activity=Education%20and%20Training HTTP/1.1
 
 ###
 
-GET http://localhost:3000/api/getBusiness?city=Madrid&activity=transport&order=score HTTP/1.1
+GET http://localhost:3000/api/getBusiness?city=Lelystad&activity=Education%20and%20Training&order=score HTTP/1.1
 
 ###
