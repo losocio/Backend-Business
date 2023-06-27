@@ -1,24 +1,25 @@
 const express = require("express")
 //const {validateBusiness} = require("../middleware/validator.js") // TODO get these routes right
-const {registerBusiness, editBusiness, deleteBusiness} = require("../controllers/admin.js")
-const {routerGETBusiness} = require("./GETBusiness.js")
+const {createBusiness} = require("../controllers/admin.js")
+const {editBusiness, deleteBusiness} = require("../controllers/modifyBusiness.js")
+const routerGetBusiness = require("./getBusiness.js")
 
 const routerAdmin = express.Router()
 routerAdmin.use(express.json())
 
 // Upload new businesses to the website
 // Here I can pass an array of validators chains and the router package will recognice it and run them secuencially. This isnt normal JS behaviour 
-routerAdmin.post("/uploadBusiness", registerBusiness) 
+routerAdmin.post("/admin/createBusiness", createBusiness) 
 
 // Edit preexisting business
-routerAdmin.put("/editBusiness?id=id", editBusiness)
+routerAdmin.put("/admin/editBusiness", editBusiness)
 
 // Delete preexisting business
-routerAdmin.delete("/deleteBusiness?id=id", deleteBusiness)
+routerAdmin.delete("/admin/deleteBusiness", deleteBusiness)
 
 // Get businesses in multiple ways
-routerAdmin.use(routerGETBusiness)
-//routerAdmin.use("/", routerGETBusiness)
+routerAdmin.use(routerGetBusiness)
+//routerAdmin.use("/", routerGetBusiness)
 
 module.exports = routerAdmin
 

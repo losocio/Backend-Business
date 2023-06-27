@@ -1,24 +1,25 @@
 const express = require("express")
 //const {validateBusiness} = require("../middleware/validator") // TODO get these routes right
-const {editBusiness, deleteBusiness} = require("../controllers/business")
+const {editPhotos, editTexts, getMailingList} = require("../controllers/business.js")
+const {editBusiness, deleteBusiness} = require("../controllers/modifyBusiness.js")
 
 const routerBusiness = express.Router()
 routerBusiness.use(express.json())
 
 // Finish defineing business
-routerBusiness.patch("/updateBusinessInfo", editBusiness) 
+routerBusiness.patch("/business/updateBusiness", editBusiness) 
 
 // Add photos to business
-routerBusiness.patch("/updateBusinessPhotos?id=id", editBusinessPhotos)
+routerBusiness.patch("/business/updatePhotos", editPhotos)
 
 // Add texts to business
-routerBusiness.patch("/updateBusinessTexts?id=id", editBusinessTexts)
+routerBusiness.patch("/business/updateTexts", editTexts)
 
 // Delete business
-routerBusiness.delete("/deleteBusiness?id=id", deleteBusiness)
+routerBusiness.delete("/business/deleteBusiness", deleteBusiness)
 
 // Get mailing list
-routerBusiness.get("/getMailingList?id=id&activity=activity", getMailingList)
+routerBusiness.get("/business/getMailingList", getMailingList)
 
 module.exports = routerBusiness
 

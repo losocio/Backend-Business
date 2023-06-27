@@ -12,16 +12,12 @@ const getBusiness = async (req, res) => {
 
         switch(order) {
             case undefined:
-                console.log("getBusiness zaza")
-                const data = await Business.find(query).lean("score").exec() // TODO this chatGPT answer might be wrong
-                console.log(data)
+                const data = await Business.find(query) // TODO this chatGPT answer might be wrong
                 res.send(data)
                 break
             case "score":
-                console.log("getBusiness zaza order")
-                const dataToSort = await Business.find(query).lean("score").exec()
-                console.log(dataToSort)
-                res.send(dataToSort.sort((a, b) => a.score - b.score))
+                const dataToSort = await Business.find(query)
+                res.send(dataToSort.sort((a, b) => b.score - a.score))
                 break
             default: throw new BadRequestError("Invalid order parameter")
         }
@@ -31,28 +27,13 @@ const getBusiness = async (req, res) => {
 }
 
 const getBusinessById = async (req, res) => {
-    console.log("getBusinessById zaza")
     try {
-        const order = req.query.order
         const id = req.query.id
-        switch(order) {
-            case undefined:
-                const data = await Business.findById(id).lean("score").exec()
-                if (data) {
-                    res.send(data)
-                } else {
-                    throw new NotFoundError("Business not found")
-                }
-                break
-            case "score":
-                const dataToSort = await Business.findById(id).lean("score").exec()
-                if (dataToSort) {
-                    res.send(dataToSort.sort((a, b) => a.score - b.score))
-                } else {
-                    throw new NotFoundError("Business not found")
-                }
-                break
-            default: throw new BadRequestError("Invalid order parameter")
+        const data = await Business.findById(id)
+        if (data) {
+            res.send(data)
+        } else {
+            throw new NotFoundError("Business not found")
         }
     } catch(err) {
         // TODO handle error in different ways depending of type
@@ -68,7 +49,7 @@ const getBusinessByCity = async (req, res) => {
 
         switch(order) {
             case undefined:
-                const data = await Business.find(query).lean("score").exec()
+                const data = await Business.find(query)
                 if (data) {
                     res.send(data)
                 } else {
@@ -76,9 +57,40 @@ const getBusinessByCity = async (req, res) => {
                 }
                 break
             case "score":
-                const dataToSort = await Business.find(query).lean("score").exec()
+                const dataToSort = await Business.find(query)
                 if (dataToSort) {
-                    res.send(dataToSort.sort((a, b) => a.score - b.score))
+                    res.send(dataToSort.sort((a, b) => b.score - a.score))
+                } else {
+                    throw new NotFoundError("Business not found")
+                }
+                break
+            default: throw new BadRequestError("Invalid order parameter")
+        }
+    } catch(err) {
+        // TODO handle error in different ways depending of type
+    }
+}
+
+const getBusinessByActivity = async (req, res) => {
+    try {
+        const order = req.query.order
+        const activity = req.query.activity
+
+        const query = { activity: activity }
+
+        switch(order) {
+            case undefined:
+                const data = await Business.find(query)
+                if (data) {
+                    res.send(data)
+                } else {
+                    throw new NotFoundError("Business not found")
+                }
+                break
+            case "score":
+                const dataToSort = await Business.find(query)
+                if (dataToSort) {
+                    res.send(dataToSort.sort((a, b) => b.score - a.score))
                 } else {
                     throw new NotFoundError("Business not found")
                 }
@@ -100,7 +112,7 @@ const getBusinessByCityByActivity = async (req, res) => {
 
         switch(order) {
             case undefined:
-                const data = await Business.find(query).lean("score").exec()
+                const data = await Business.find(query)
                 if (data) {
                     res.send(data)
                 } else {
@@ -108,9 +120,9 @@ const getBusinessByCityByActivity = async (req, res) => {
                 }
                 break
             case "score":
-                const dataToSort = await Business.find(query).lean("score").exec()
+                const dataToSort = await Business.find(query)
                 if (dataToSort) {
-                    res.send(dataToSort.sort((a, b) => a.score - b.score))
+                    res.send(dataToSort.sort((a, b) => b.score - a.score))
                 } else {
                     throw new NotFoundError("Business not found")
                 }
@@ -126,5 +138,6 @@ module.exports = {
     getBusiness,
     getBusinessById,
     getBusinessByCity, 
+    getBusinessByActivity,
     getBusinessByCityByActivity
 }

@@ -1,33 +1,41 @@
-###
+### GET all the businesses
 
 GET http://localhost:3000/api/getBusiness HTTP/1.1
 
-###
+### GET all the businesses ordered by score
 
 GET http://localhost:3000/api/getBusiness?order=score HTTP/1.1
 
-###
+### GET a business by it's id
 
-GET http://localhost:3000/api/getBusiness?id=6499a6159113dc84a1aa8401 HTTP/1.1
+GET http://localhost:3000/api/getBusiness/byId?id=649ab1b2bc194c5a3409f4f4 HTTP/1.1
 
-###
+### GET a business by it's id ordered by score (doesn't do anything)
 
-GET http://localhost:3000/api/getBusiness?id=6499a6159113dc84a1aa8401&order=score HTTP/1.1
+GET http://localhost:3000/api/getBusiness/byId?id=649ab1b2bc194c5a3409f4f4&order=score HTTP/1.1
 
-###
+### GET businesses that match a city
 
-GET http://localhost:3000/api/getBusiness?city=Lelystad HTTP/1.1
+GET http://localhost:3000/api/getBusiness/byCity?city=Lelystad HTTP/1.1
 
-###
+### GET businesses that match a city ordered by score
 
-GET http://localhost:3000/api/getBusiness?city=Lelystad&order=score HTTP/1.1
+GET http://localhost:3000/api/getBusiness/byCity?city=Madrid&order=score HTTP/1.1
 
-###
+### GET businesses that match an activity
 
-GET http://localhost:3000/api/getBusiness?city=Lelystad&activity=Education%20and%20Training HTTP/1.1
+GET http://localhost:3000/api/getBusiness/byActivity?activity=Financial%20and%20Banking HTTP/1.1
 
-###
+### GET businesses that match an activity ordered by score
 
-GET http://localhost:3000/api/getBusiness?city=Lelystad&activity=Education%20and%20Training&order=score HTTP/1.1
+GET http://localhost:3000/api/getBusiness/byActivity?activity=Financial%20and%20Banking&order=score HTTP/1.1
+
+### GET businesses that match a city and an activity
+
+GET http://localhost:3000/api/getBusiness/byCity&Activity?city=Lelystad&activity=Financial%20and%20Banking HTTP/1.1
+
+### GET businesses that match a city and an activity ordered by score
+
+GET http://localhost:3000/api/getBusiness/byCity&Activity?city=Lelystad&activity=Education%20and%20Training&order=score HTTP/1.1
 
 ###

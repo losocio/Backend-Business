@@ -65,6 +65,9 @@ const BusinessSchema = new mongoose.Schema(
             type: Number,
             default: 0
         },
+        score: {
+            type: Number
+        },
         reviews: {
             type: [String]
         }
@@ -76,6 +79,14 @@ const BusinessSchema = new mongoose.Schema(
     }
 )
 
+// Document middleware to calculate the "score" field before saving
+BusinessSchema.pre("save", () => {
+    if (this.votes && this.votesPositive) {
+      this.score = Math.round((this.votesPositive / this.votes) * 100)
+    }
+})
+
+/*
 // Virtual field, it get computed from other fields from the db
 BusinessSchema.virtual("score").get(() => {
     if (this.votes === 0) {
@@ -84,5 +95,5 @@ BusinessSchema.virtual("score").get(() => {
     const percentage = (this.votesPositive / this.votes) * 100
     return Math.round(percentage)
 })
-
+*/
 module.exports = mongoose.model("Business", BusinessSchema)
