@@ -33,6 +33,7 @@ const BusinessSchema = new mongoose.Schema(
         activity: {
             type: String,
             enum: [
+                null,
                 'Retail',
                 'Food and Beverage',
                 'Professional Services',

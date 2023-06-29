@@ -1,28 +1,41 @@
-###
+### Edit info
 
-PATCH http://localhost:3000/api/ HTTP/1.1
+PATCH http://localhost:3000/api/business/updateBusiness?id=649b140ef3f19149362e60f1 HTTP/1.1
 Content-Type: application/json
 
 {
-    "name":"Jermy Lij",
-    "cif":69,
-    "address":"15 Bunker Hill Parkway",
-    "email":"tiamo@aol.com",
-    "phone":"2251654720",
-    "city":"Lelystad",
-    "activity":"Education and Training",
+    "activity": "Education and Training",
     "title":"Yoveo",
     "summary":"Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.",
     "images":"http://dummyimage.com/184x100.png/cc0000/ffffff",
-    "texts":"Phasellus in felis. Donec semper sapien a libero. Nam dui.\n\nProin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.\n\nInteger ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.",
-    "votes":7667,
-    "votesPositive":76,
-    "score":11,
-    "reviews":""
+    "texts":"Phasellus in felis. Donec semper sapien a libero. Nam dui.\n\nProin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.\n\nInteger ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi."
 }
+
+### Edit images
+
+PATCH http://localhost:3000/api/business/updateImages?id=649b140ef3f19149362e60f1 HTTP/1.1
+Content-Type: application/json
+
+{
+    "images":"http://dummyimage.com/yeoldeimage"
+}
+
+### Edit texts
+
+PATCH http://localhost:3000/api/business/updateTexts?id=649b140ef3f19149362e60f1 HTTP/1.1
+Content-Type: application/json
+
+{
+    "texts":"frikandelbroodje 4 life"
+}
+
+### Get mailing list of users in same city
+
+GET http://localhost:3000/api/business/getMailingList?id=649c5c25c8c9e0d04bf0faea&activity=Education%20and%20Training HTTP/1.1
+
 
 ### TODO TESTING GET businesses that match a city and an activity ordered by score
 
-GET http://localhost:3000/api/getBusiness/byCity&Activity?city=Lelystad&activity=Education%20and%20Training&order=score HTTP/1.1
+GET http://localhost:3000/api/admin/getBusiness/byCity&Activity?city=Lelystad&activity=Education%20and%20Training&order=score HTTP/1.1
 ###
-GET http://localhost:3000/api/getBusiness HTTP/1.1
+GET http://localhost:3000/api/admin/getBusiness HTTP/1.1

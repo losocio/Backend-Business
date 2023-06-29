@@ -1,18 +1,15 @@
-/*
-Controllers to fetch Business data from DB
-
-*/
 const Business = require("../models/business.js")
+const { handleHTTPError } = require("../utils/handleHTTPError.js")
 
 const getBusiness = async (req, res) => {
     try {
-        const order = req.query.order
 
+        const order = req.query.order
         const query = {}
 
         switch(order) {
             case undefined:
-                const data = await Business.find(query) // TODO this chatGPT answer might be wrong
+                const data = await Business.find(query)
                 res.send(data)
                 break
             case "score":
@@ -22,7 +19,8 @@ const getBusiness = async (req, res) => {
             default: throw new BadRequestError("Invalid order parameter")
         }
     } catch(err) {
-        // TODO handle error
+        // SLACK log I think
+        handleHTTPError(res, "ERROR_GET_BUSINESS")
     }
 }
 
@@ -36,7 +34,8 @@ const getBusinessById = async (req, res) => {
             throw new NotFoundError("Business not found")
         }
     } catch(err) {
-        // TODO handle error in different ways depending of type
+        // SLACK log I think
+        handleHTTPError(res, "ERROR_GET_BUSINESS_BY_ID")
     }
 }
 
@@ -67,7 +66,7 @@ const getBusinessByCity = async (req, res) => {
             default: throw new BadRequestError("Invalid order parameter")
         }
     } catch(err) {
-        // TODO handle error in different ways depending of type
+        handleHTTPError(res, "ERROR_GET_BUSINESS_BY_CITY")
     }
 }
 
@@ -98,7 +97,7 @@ const getBusinessByActivity = async (req, res) => {
             default: throw new BadRequestError("Invalid order parameter")
         }
     } catch(err) {
-        // TODO handle error in different ways depending of type
+        handleHTTPError(res, "ERROR_GET_BUSINESS_BY_ACTIVITY")
     }
 }
 
@@ -130,7 +129,7 @@ const getBusinessByCityByActivity = async (req, res) => {
             default: throw new BadRequestError("Invalid order parameter")
         }
     } catch(err) {
-        // TODO handle error in different ways depending of type
+        handleHTTPError(res, "ERROR_GET_BUSINESS_BY_CITY_BY_ACTIVITY")
     }
 }
 

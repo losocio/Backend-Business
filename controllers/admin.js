@@ -1,25 +1,25 @@
 const { matchedData } = require("express-validator")
 const Business = require("../models/business.js")
+const { handleHTTPError } = require("../utils/handleHTTPError.js")
 
 const createBusiness = async (req, res) => {
+    //const incomingData = matchedData(req)
+    //console.log(incomingData)
     try {
-        //const incomingData = matchedData(req)
-        const incomingData = req.body
+        const incomingData = matchedData(req)
+        //const incomingData = req.body
 
         // create() creates a BusinessModel from the data directly, unlike save()
-        const createdBusiness = await Business.create(incomingData) // TODO freezes D:)
+        const createdBusiness = await Business.create(incomingData)
         res.send(createdBusiness)
     } catch(err) {
-        // TODO add errorHandler from utils 
         // SLACK log I think
-        console.log(err)
+        handleHTTPError(res, "ERROR_CREATE_BUSINESS")
     }
 }
 
 
-module.exports = { 
-    createBusiness
-}
+module.exports = { createBusiness }
 
 /*
 const editBusiness = async (req, res) => { 

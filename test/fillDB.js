@@ -1,14 +1,14 @@
 const fillUsers = [
-    {"name":"Didi Nel","email":"dnel0@nbcnews.com","age":74,"password":"hY2{OZ0j@E*~*'I","city":"Morris","interests":"Education and Training","receiveOffers":true},
-    {"name":"Halie Lamplough","email":"hlamplough1@unesco.org","age":12,"password":"eS1\\ffvB","city":"Tampa","interests":"Financial and Banking","receiveOffers":false},
-    {"name":"Zola McSporrin","email":"zmcsporrin2@ning.com","age":66,"password":"rM1{_4_s8P}YVW","city":"Carmen","interests":"Retail","receiveOffers":false},
-    {"name":"Jilleen Goney","email":"jgoney3@exblog.jp","age":92,"password":"bN5@,V(Iui","city":"Nogueira","interests":"Technology and Software","receiveOffers":true},
-    {"name":"Petey Eskrick","email":"peskrick4@nydailynews.com","age":66,"password":"dF4`R$U*","city":"Ganyesa","interests":"Food and Beverage","receiveOffers":false},
-    {"name":"Raphaela McCreery","email":"rmccreery5@creativecommons.org","age":70,"password":"bN8@`u$2yrh","city":"Primošten","interests":"Technology and Software","receiveOffers":false},
-    {"name":"Michaella Poley","email":"mpoley6@nature.com","age":63,"password":"wW8?O4B8!At_nR),","city":"Longshan","interests":"Manufacturing and Industrial","receiveOffers":true},
-    {"name":"Rosamund Pierse","email":"rpierse7@dot.gov","age":9,"password":"vV2@4d7E}&\\\"/_","city":"Mizque","interests":"Manufacturing and Industrial","receiveOffers":false},
-    {"name":"Shirline Slaney","email":"sslaney8@foxnews.com","age":62,"password":"mN8\\ob(8","city":"Saint-Rémi","interests":"Food and Beverage","receiveOffers":true},
-    {"name":"Olympia Giovannacci","email":"ogiovannacci9@ow.ly","age":78,"password":"pS3\\IgUN","city":"Boncong","interests":"Manufacturing and Industrial","receiveOffers":true}
+    {"name":"Didi Nel","email":"dnel0@nbcnews.com","age":74,"password":"hY2{OZ0j@E*~*'I","city":"Lelystad","interests":"Education and Training","receivesOffers":false},
+    {"name":"Halie Lamplough","email":"hlamplough1@unesco.org","age":12,"password":"eS1\\ffvB","city":"Tampa","interests":"Financial and Banking","receivesOffers":false},
+    {"name":"Zola McSporrin","email":"zmcsporrin2@ning.com","age":66,"password":"rM1{_4_s8P}YVW","city":"Carmen","interests":"Retail","receivesOffers":false},
+    {"name":"Jilleen Goney","email":"jgoney3@exblog.jp","age":92,"password":"bN5@,V(Iui","city":"Nogueira","interests":"Technology and Software","receivesOffers":true},
+    {"name":"Petey Eskrick","email":"peskrick4@nydailynews.com","age":66,"password":"dF4`R$U*","city":"Ganyesa","interests":"Food and Beverage","receivesOffers":false},
+    {"name":"Raphaela McCreery","email":"rmccreery5@creativecommons.org","age":70,"password":"bN8@`u$2yrh","city":"Madrid","interests":"Technology and Software","receivesOffers":false},
+    {"name":"Michaella Poley","email":"mpoley6@nature.com","age":63,"password":"wW8?O4B8!At_nR),","city":"Madrid","interests":"Manufacturing and Industrial","receivesOffers":true},
+    {"name":"Rosamund Pierse","email":"rpierse7@dot.gov","age":9,"password":"vV2@4d7E}&\\\"/_","city":"Lelystad","interests":"Manufacturing and Industrial","receivesOffers":false},
+    {"name":"Shirline Slaney","email":"sslaney8@foxnews.com","age":62,"password":"mN8\\ob(8","city":"Saint-Rémi","interests":"Food and Beverage","receivesOffers":true},
+    {"name":"Olympia Giovannacci","email":"ogiovannacci9@ow.ly","age":78,"password":"pS3\\IgUN","city":"Lelystad","interests":"Education and Training","receivesOffers":true}
 ]
 
 const fillBusinesses = [

@@ -10,9 +10,11 @@ const dbURI = process.env.DB_URI
 dbConnect(dbURI)
 
 // TODO Testing 
+const routerAdmin = require("./routes/admin.js")
+app.use("/api", routerAdmin)
+
 const routerBusiness = require("./routes/business.js")
 app.use("/api", routerBusiness)
-
 
 const port = process.env.PORT //|| 3000
 app.listen(port, () => {

@@ -1,5 +1,6 @@
 const { matchedData } = require("express-validator")
 const Business = require("../models/business.js")
+const { handleHTTPError } = require("../utils/handleHTTPError.js")
 
 const editBusiness = async (req, res) => { 
     try {
@@ -9,17 +10,15 @@ const editBusiness = async (req, res) => {
 
         const updatedBusiness = await Business.findOneAndUpdate(
             {_id: id}, 
-            {"name": "Tiamo Frikandel"}, 
+            update, 
             {new: true}
         )        
         res.send(updatedBusiness)
     } catch(err) {
-        // TODO add errorHandler from utils 
         // SLACK log I think
-        console.log(err)
+        handleHTTPError(res, "ERROR_EDIT_BUSINESS")
     }
 }
-
 
 const deleteBusiness = async (req, res) => {
     try{
@@ -30,9 +29,8 @@ const deleteBusiness = async (req, res) => {
 
         res.send(deletedBusiness)
     } catch(err){
-        //console.log(err)
-        //handleHttpError(res, "ERROR_GET_ITEM")
-        console.log(err)
+        // SLACK log I think
+        handleHTTPError(res, "ERROR_DELETE_BUSINESS")
     }
 }
 

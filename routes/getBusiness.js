@@ -1,5 +1,10 @@
 const express = require("express")
-//const {validateBusiness} = require("../middlewares/validatorsPOSTPUT/validatorBusiness.js") // TODO get these routes right
+const { 
+    validatorGetBusiness,
+    validatorGetBusinessById,
+    validatorGetBusinessByCity,
+    validatorGetBusinessByActivity,
+    validatorGetBusinessByCityByActivity } = require("../middlewares/validatorGetBusiness.js")
 const { getBusiness, getBusinessById, getBusinessByCity, getBusinessByActivity, getBusinessByCityByActivity } = require("../controllers/getBusiness.js")
 
 const routerGetBusiness = express.Router()
@@ -9,19 +14,19 @@ routerGetBusiness.use(express.json())
 // Each function will check if it need to order the data and will act accordingly (in this files controller)
 
 // GET all the businesses
-routerGetBusiness.get("/getBusiness", getBusiness)
+routerGetBusiness.get("/getBusiness", validatorGetBusiness, getBusiness)
 
 // GET a business by it's id
-routerGetBusiness.get("/getBusiness/byId", getBusinessById)
+routerGetBusiness.get("/getBusiness/byId", validatorGetBusinessById, getBusinessById)
 
 // GET businesses that match a city
-routerGetBusiness.get("/getBusiness/byCity", getBusinessByCity)
+routerGetBusiness.get("/getBusiness/byCity", validatorGetBusinessByCity, getBusinessByCity)
 
 // GET businesses that match an activity
-routerGetBusiness.get("/getBusiness/byActivity", getBusinessByActivity)
+routerGetBusiness.get("/getBusiness/byActivity", validatorGetBusinessByActivity, getBusinessByActivity)
 
 // GET businesses that match a city and an activity
-routerGetBusiness.get("/getBusiness/byCity&Activity", getBusinessByCityByActivity)
+routerGetBusiness.get("/getBusiness/byCity&Activity", validatorGetBusinessByCityByActivity, getBusinessByCityByActivity)
 
 
 module.exports = routerGetBusiness
