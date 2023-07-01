@@ -1,8 +1,10 @@
 const express = require("express")
-const { validatorEditBusiness, validatorDeleteBusiness, validatorEditImages, validatorEditTexts } = require("../middlewares/validatorBusiness.js")
-const { validatorGetMailingList } = require("../middlewares/validatorGetMailingList.js")
-const {editImages, editTexts, getMailingList} = require("../controllers/business.js")
-const {editBusiness, deleteBusiness} = require("../controllers/modifyBusiness.js")
+const { validatorEditBusiness,
+        validatorDeleteBusiness,
+        validatorEditImages,
+        validatorEditTexts,
+        validatorGetMailingList } = require("../middlewares/validatorBusiness.js")
+const { editBusiness, deleteBusiness, editImages, editTexts, getMailingList } = require("../controllers/business.js")
 
 const routerBusiness = express.Router()
 routerBusiness.use(express.json())

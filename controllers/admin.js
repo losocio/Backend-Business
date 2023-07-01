@@ -1,25 +1,62 @@
 const { matchedData } = require("express-validator")
 const Business = require("../models/business.js")
 const { handleHTTPError } = require("../utils/handleHTTPError.js")
+const { signPermanentToken } = require("../utils/handleJWT.js")
 
 const createBusiness = async (req, res) => {
-    //const incomingData = matchedData(req)
-    //console.log(incomingData)
     try {
-        const incomingData = matchedData(req)
-        //const incomingData = req.body
+        const incomingData = matchedData(req, { locations: ["body"] })
 
-        // create() creates a BusinessModel from the data directly, unlike save()
-        const createdBusiness = await Business.create(incomingData)
-        res.send(createdBusiness)
+        console.log(incomingData)
+        const business = await Business.create(incomingData)
+
+        const businessAndToken = {
+            token: signPermanentToken(business), // This token must be used in later requests
+            business
+        }
+        res.send(businessAndToken)
     } catch(err) {
         // SLACK log I think
+        console.log(err)
         handleHTTPError(res, "ERROR_CREATE_BUSINESS")
     }
 }
 
+const editBusiness = async (req, res) => { 
+    try {
+        const id = matchedData(req, { locations: ["query"] }).id
+        const update = matchedData(req, { locations: ["body"] })
 
-module.exports = { createBusiness }
+        const updatedBusiness = await Business.findOneAndUpdate(
+            {_id: id}, 
+            update, 
+            {new: true}
+        )        
+        res.send(updatedBusiness)
+    } catch(err) {
+        // SLACK log I think
+        handleHTTPError(res, "ERROR_EDIT_BUSINESS")
+    }
+}
+
+const deleteBusiness = async (req, res) => {
+    try{
+        const id = matchedData(req, { locations: ["query"] }).id
+
+        const deletedBusiness = await Business.findOneAndDelete({_id:id})
+
+        res.send(deletedBusiness)
+    } catch(err){
+        // SLACK log I think
+        handleHTTPError(res, "ERROR_DELETE_BUSINESS")
+    }
+}
+
+module.exports = { 
+    createBusiness,
+    editBusiness,
+    deleteBusiness
+}
 
 /*
 const editBusiness = async (req, res) => { 

@@ -1,9 +1,5 @@
-/**
- * The required fields are to be created/edited by the admin exclusively
- * 
- */
-
 const mongoose = require("mongoose")
+
 const BusinessSchema = new mongoose.Schema(
     {
         name: {

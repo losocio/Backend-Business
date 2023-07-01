@@ -1,33 +1,38 @@
-### Edit info
+### Edit business data
 
-PATCH http://localhost:3000/api/business/updateBusiness?id=649b140ef3f19149362e60f1 HTTP/1.1
+PATCH http://localhost:3000/api/business/updateBusiness?id=649ee0bb67d5d95e8b2ce970 HTTP/1.1
 Content-Type: application/json
 
-{
+{   
+    "name": "new name",
     "activity": "Education and Training",
-    "title":"Yoveo",
-    "summary":"Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.",
-    "images":"http://dummyimage.com/184x100.png/cc0000/ffffff",
-    "texts":"Phasellus in felis. Donec semper sapien a libero. Nam dui.\n\nProin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.\n\nInteger ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi."
+    "title":"ACADEMIA",
+    "summary":"academia buena muy muy muy muy buena",
+    "images":["http://dummyimage.com/184x100.png/cc0000/ffffff"],
+    "texts":["Phasellus in felis. Donec semper sapien a libero. Nam dui.\n\nProin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.\n\nInteger ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi."]
 }
 
-### Edit images
+### Edit business images
 
-PATCH http://localhost:3000/api/business/updateImages?id=649b140ef3f19149362e60f1 HTTP/1.1
+PATCH http://localhost:3000/api/business/updateImages?id=649ee0bb67d5d95e8b2ce96f HTTP/1.1
 Content-Type: application/json
 
 {
-    "images":"http://dummyimage.com/yeoldeimage"
+    "images":["http://dummyimage.com/yeoldeimage"]
 }
 
-### Edit texts
+### Edit business texts
 
-PATCH http://localhost:3000/api/business/updateTexts?id=649b140ef3f19149362e60f1 HTTP/1.1
+PATCH http://localhost:3000/api/business/updateTexts?id=649ee0bb67d5d95e8b2ce96f HTTP/1.1
 Content-Type: application/json
 
 {
-    "texts":"frikandelbroodje 4 life"
+    "texts":["frikandelbroodje 4 life"]
 }
+
+### Delete business
+
+DELETE http://localhost:3000/api/business/deleteBusiness?id=649ee0bb67d5d95e8b2ce96f HTTP/1.1
 
 ### Get mailing list of users in same city
 

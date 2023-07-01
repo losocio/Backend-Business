@@ -1,6 +1,6 @@
 const express = require("express")
 const {dbConnect} = require("./config/mongo.js")
-//const router = require("./routes/index.js") // TODO error from this
+const router = require("./routes/index.js")
 
 require("dotenv").config()
 
@@ -9,14 +9,10 @@ const app = express()
 const dbURI = process.env.DB_URI
 dbConnect(dbURI)
 
-// TODO Testing 
-const routerAdmin = require("./routes/admin.js")
-app.use("/api", routerAdmin)
+app.use("/api", router)
 
-const routerBusiness = require("./routes/business.js")
-app.use("/api", routerBusiness)
 
-const port = process.env.PORT //|| 3000
+const port = process.env.PORT
 app.listen(port, () => {
     console.log("Servidor iniciado en el puerto" , port)
 })

@@ -1,4 +1,5 @@
 const mongoose = require("mongoose")
+
 const UserSchema = new mongoose.Schema(
     {
         name: {
@@ -22,7 +23,7 @@ const UserSchema = new mongoose.Schema(
             required: true
         },
         interests: {
-            type: [String],
+            type: String,
             enum: [
                 'Retail',
                 'Food and Beverage',

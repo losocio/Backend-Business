@@ -1,21 +1,29 @@
 const express = require("express")
-const fs = require("fs")
+const routerAdmin = require("./admin.js")
+const routerBusiness = require("./business.js")
+const routerUserPublic = require("./userPublic.js")
+const routerUserRegistered = require("./userRegistered.js")
+
 const router = express.Router()
 
+router.use(routerAdmin)
+router.use(routerBusiness)
+router.use(routerUserPublic)
+router.use(routerUserRegistered)
 
-const removeExtension = (file) => {
-    return file.split(".").shift()
-}
 
-// Create a unique router for all the files in the current directory
-fs.readdirSync(__dirname).map((file) => {
-    const name = removeExtension(file)
 
-    if(name !== "index" && name !== "GETBusiness") {
-        router.use(name, require("./" + file)) // The use() method adds an imported router object to another router object in this file
+const User = require("../models/user.js")
+router.get("/getUsers", async (req, res) => {
+    try {
+        const query = {}
+
+        const data = await User.find(query)
+        res.send(data)
+        
+    } catch(err) {
+        // SLACK log I think
+        handleHTTPError(res, "ERROR_GET_BUSINESS")
     }
-    // TODO no funciona poruqe los archivos no de los controllers no existen, los que importan la routes
 })
-
-
 module.exports = router

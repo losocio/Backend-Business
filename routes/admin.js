@@ -1,7 +1,6 @@
 const express = require("express")
 const { validatorCreateBusiness, validatorEditBusiness, validatorDeleteBusiness } = require("../middlewares/validatorBusiness.js")
-const { createBusiness } = require("../controllers/admin.js")
-const { editBusiness, deleteBusiness } = require("../controllers/modifyBusiness.js")
+const { createBusiness, editBusiness, deleteBusiness } = require("../controllers/admin.js")
 const routerGetBusiness = require("./getBusiness.js")
 
 const routerAdmin = express.Router()
@@ -12,20 +11,19 @@ routerAdmin.use(express.json())
 routerAdmin.post("/admin/createBusiness", validatorCreateBusiness, createBusiness) 
 
 // Edit preexisting business
-routerAdmin.put("/admin/editBusiness", validatorEditBusiness, editBusiness)
+routerAdmin.patch("/admin/editBusiness", validatorEditBusiness, editBusiness)
 
 // Delete preexisting business
 routerAdmin.delete("/admin/deleteBusiness", validatorDeleteBusiness, deleteBusiness)
 
 // Get businesses in multiple ways
 routerAdmin.use("/admin", routerGetBusiness)
-//routerAdmin.use("/", routerGetBusiness)
 
 module.exports = routerAdmin
 
 /*
 - [ ] POST Upload business (needs JWT) (creates JWT for Business)
-- [ ] PUT Modify business (needs JWT)
+- [ ] PATCH Modify business (needs JWT)
 - [ ] GET all businesses (needs JWT)
 - [ ] GET business by id (needs JWT)
 - [ ] DELETE business (needs JWT)

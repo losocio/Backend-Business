@@ -1,16 +1,19 @@
 const express = require("express")
-const {validateBusiness} = require("../middleware/validator.js") // TODO get these routes right
-const {} = require("../controllers/.js")
-const {routerGETBusiness} = require("./GETBusiness")
+const { validatorRegisterUser, validatorLoginUser } = require("../middlewares/validatorUser.js")
+const { registerUser, loginUser } = require("../controllers/userPublic.js")
+const routerGetBusiness = require("./getBusiness.js")
 
 const routerUserPublic = express.Router()
 routerUserPublic.use(express.json())
 
-routerUserPublic.post("/registerUser", registerUser)
+// Register a new user
+routerUserPublic.post("/publicUser/registerUser", validatorRegisterUser, registerUser)
+
+// Login a user
+routerUserPublic.get("/publicUser/loginUser", validatorLoginUser, loginUser)
 
 // Get businesses in multiple ways
-routerUserPublic.use(routerGETBusiness)
-//routerUserPublic.use("/", routerGETBusiness)
+routerUserPublic.use("/publicUSer", routerGetBusiness)
 
 
 module.exports = routerUserPublic

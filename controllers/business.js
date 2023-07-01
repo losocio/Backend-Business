@@ -3,16 +3,52 @@ const Business = require("../models/business.js")
 const User = require("../models/user.js")
 const { handleHTTPError } = require("../utils/handleHTTPError.js")
 
-const editImages = async (req, res) => {
+const editBusiness = async (req, res) => { 
     try {
-        //const incomingData = matchedData(req)
-        const id = req.query.id
-        const update = req.body
+        const id = matchedData(req, { locations: ["query"] }).id
+        const { activity, title, summary, images, texts} = matchedData(req, { locations: ["body"] })
+
+        const updatedBusiness = await Business.findOneAndUpdate(
+            {_id: id}, 
+            {
+                "activity": activity,
+                "title": title,
+                "summary": summary,
+                "images": images,
+                "texts": texts 
+            }, 
+            {new: true}
+        )        
+        res.send(updatedBusiness)
+    } catch(err) {
+        // SLACK log I think
+        handleHTTPError(res, "ERROR_EDIT_BUSINESS")
+    }
+}
+
+const deleteBusiness = async (req, res) => {
+    try{
+        const id = matchedData(req, { locations: ["query"] }).id
+
+        const deletedBusiness = await Business.findOneAndDelete({_id:id})
+
+        res.send(deletedBusiness)
+    } catch(err){
+        // SLACK log I think
+        handleHTTPError(res, "ERROR_DELETE_BUSINESS")
+    }
+}
+
+const editImages = async (req, res) => { 
+    try {
+        const id = matchedData(req, { locations: ["query"] }).id
+        const newImages = matchedData(req, { locations: ["body"] }).images
 
         const preBusiness = await Business.findById(id)
-        
-        let images = [...preBusiness.images]
-        images.push(update.images)
+
+        let images = preBusiness.images
+
+        images.push(...newImages)
 
         const updatedBusiness = await Business.findOneAndUpdate(
             {_id: id}, 
@@ -28,14 +64,12 @@ const editImages = async (req, res) => {
 
 const editTexts = async (req, res) => {
     try {
-        //const incomingData = matchedData(req)
-        const id = req.query.id
-        const update = req.body
-
-        const preBusiness = await Business.findById(id)
+        const id = matchedData(req, { locations: ["query"] }).id
+        const newTexts = matchedData(req, { locations: ["body"] }).texts
         
-        let texts = [...preBusiness.texts]
-        texts.push(update.texts)
+        const preBusiness = await Business.findById(id)
+        let texts = preBusiness.texts
+        texts.push(...newTexts)
 
         const updatedBusiness = await Business.findOneAndUpdate(
             {_id: id}, 
@@ -74,6 +108,8 @@ const getMailingList = async (req, res) => {
 }
 
 module.exports = {
+    editBusiness,
+    deleteBusiness,
     editImages,
     editTexts,
     getMailingList

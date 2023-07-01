@@ -1,10 +1,10 @@
+const { matchedData } = require("express-validator")
 const Business = require("../models/business.js")
 const { handleHTTPError } = require("../utils/handleHTTPError.js")
 
 const getBusiness = async (req, res) => {
     try {
-
-        const order = req.query.order
+        const order = matchedData(req, { locations: ["query"] }).order
         const query = {}
 
         switch(order) {
@@ -26,8 +26,10 @@ const getBusiness = async (req, res) => {
 
 const getBusinessById = async (req, res) => {
     try {
-        const id = req.query.id
+        const id = matchedData(req, { locations: ["query"] }).id
+
         const data = await Business.findById(id)
+
         if (data) {
             res.send(data)
         } else {
@@ -41,8 +43,8 @@ const getBusinessById = async (req, res) => {
 
 const getBusinessByCity = async (req, res) => {
     try {
-        const order = req.query.order
-        const city = req.query.city
+        const order = matchedData(req, { locations: ["query"] }).order
+        const city = matchedData(req, { locations: ["query"] }).city
 
         const query = { city: city }
 
@@ -72,8 +74,8 @@ const getBusinessByCity = async (req, res) => {
 
 const getBusinessByActivity = async (req, res) => {
     try {
-        const order = req.query.order
-        const activity = req.query.activity
+        const order = matchedData(req, { locations: ["query"] }).order
+        const activity = matchedData(req, { locations: ["query"] }).activity
 
         const query = { activity: activity }
 
@@ -103,9 +105,9 @@ const getBusinessByActivity = async (req, res) => {
 
 const getBusinessByCityByActivity = async (req, res) => {
     try {
-        const order = req.query.order
-        const city = req.query.city
-        const activity = req.query.activity
+        const order = matchedData(req, { locations: ["query"] }).order
+        const city = matchedData(req, { locations: ["query"] }).city
+        const activity = matchedData(req, { locations: ["query"] }).activity
 
         const query = { city: city, activity: activity }
 
