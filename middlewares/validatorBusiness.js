@@ -2,6 +2,7 @@ const { query, body, header } = require("express-validator")
 const { validateResult } = require("../utils/validateResult.js")
 
 const validatorCreateBusiness = [
+    
     body("name").exists().notEmpty().isString().isLength({ min: 3, max: 65 }), 
     body("cif").exists().notEmpty().isNumeric(),
     body("address").exists().notEmpty().isString().isLength({ min: 8, max: 32 }),
@@ -14,7 +15,50 @@ const validatorCreateBusiness = [
     }
 ]
 
+const validatorEditBusinessAdmin = [
+    query("id").exists().notEmpty().isMongoId(),
+
+    body("name").exists().optional().notEmpty().isString().isLength({ min: 3, max: 65 }), 
+    body("cif").exists().optional().notEmpty().isNumeric(),
+    body("address").exists().optional().notEmpty().isString().isLength({ min: 8, max: 32 }),
+    body("email").exists().optional().notEmpty().isEmail(),
+    body("phone").exists().optional().notEmpty().isString().isLength(10),
+
+    body("city").exists().optional().notEmpty().isString().isLength({ min: 3, max: 15 }), 
+    body("activity").exists().optional().notEmpty().custom((value) => {
+        if(['Retail',
+            'Food and Beverage',
+            'Professional Services',
+            'Health and Wellness',
+            'Hospitality and Tourism',
+            'Technology and Software',
+            'Manufacturing and Industrial',
+            'Arts and Entertainment',
+            'Education and Training',
+            'Financial and Banking'].includes(value)) return true
+        else return false
+    }),
+    body("title").exists().optional().notEmpty().isString().isLength({ min: 5, max: 32 }),
+    body("summary").exists().optional().notEmpty().isString().isLength({ min: 20, max: 500 }),
+    body("images").exists().optional().isArray(),
+    body("texts").exists().optional().isArray(), // TODO check contents of array if they are string and their Length
+    
+    (req, res, next) => {
+        return validateResult(req, res, next) 
+    }
+]
+
+const validatorDeleteBusinessAdmin = [
+    query("id").exists().notEmpty().isMongoId(),
+    
+    (req, res, next) => {
+        return validateResult(req, res, next) 
+    }
+]
+
 const validatorEditBusiness = [
+    header("authorization").exists().notEmpty().isJWT(),
+
     query("id").exists().notEmpty().isMongoId(),
 
     body("name").exists().optional().notEmpty().isString().isLength({ min: 3, max: 65 }), 
@@ -48,6 +92,8 @@ const validatorEditBusiness = [
 ]
 
 const validatorDeleteBusiness = [
+    header("authorization").exists().notEmpty().isJWT(),
+
     query("id").exists().notEmpty().isMongoId(),
     
     (req, res, next) => {
@@ -56,6 +102,8 @@ const validatorDeleteBusiness = [
 ]
 
 const validatorEditImages = [
+    header("authorization").exists().notEmpty().isJWT(),
+
     query("id").exists().notEmpty().isMongoId(),
 
     body("images").exists().isArray(), // TODO contents of array are string and Length
@@ -66,6 +114,8 @@ const validatorEditImages = [
 ]
 
 const validatorEditTexts = [
+    header("authorization").exists().notEmpty().isJWT(),
+
     query("id").exists().notEmpty().isMongoId(),
 
     body("texts").exists().isArray(), // TODO contents of array are string and Length
@@ -93,6 +143,8 @@ const validatorVoteBusiness = [
 ]
 
 const validatorGetMailingList = [
+    header("authorization").exists().notEmpty().isJWT(),
+
     query("id").exists().notEmpty().isMongoId(),
     query("activity").exists().notEmpty().custom((value) => {
         if(['Retail',
@@ -115,6 +167,8 @@ const validatorGetMailingList = [
 
 module.exports = { 
     validatorCreateBusiness,
+    validatorEditBusinessAdmin,
+    validatorDeleteBusinessAdmin,
     validatorEditBusiness,
     validatorDeleteBusiness,
     validatorEditImages,

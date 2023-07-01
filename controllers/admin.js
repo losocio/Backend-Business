@@ -7,7 +7,6 @@ const createBusiness = async (req, res) => {
     try {
         const incomingData = matchedData(req, { locations: ["body"] })
 
-        console.log(incomingData)
         const business = await Business.create(incomingData)
 
         const businessAndToken = {
@@ -17,7 +16,6 @@ const createBusiness = async (req, res) => {
         res.send(businessAndToken)
     } catch(err) {
         // SLACK log I think
-        console.log(err)
         handleHTTPError(res, "ERROR_CREATE_BUSINESS")
     }
 }

@@ -16,13 +16,13 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGEwMDRlOTE2Zjhi
 
 ### Vote on a business, with optional review text
 
-PATCH http://localhost:3000/api/registeredUser/voteBusiness?id=64a047b1eb8fb39f163decb3 HTTP/1.1
+PATCH http://localhost:3000/api/registeredUser/voteBusiness?id=64a06a1c88f4a8fbeb821969 HTTP/1.1
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGEwNDdmZTYzMGRmODk0YjU5OTdlZTQiLCJuYW1lIjoiUmljYXJkbyBQYWxhY2lvcyIsImVtYWlsIjoicnBhbGFjaW9zQHUtdGFkLmNvbSIsImlhdCI6MTY4ODIyNTc5MywiZXhwIjoxNjg4MjI5MzkzfQ.QLAfOv4BY2PaS5Cll2-kNqvgXpHUvkx4D8t-Jm-HIw4
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGEwNjk4Mjg4ZjRhOGZiZWI4MjE5NjEiLCJuYW1lIjoiUmljYXJkbyBQYWxhY2lvcyIsImVtYWlsIjoicnBhbGFjaW9zQHUtdGFkLmNvbSIsImlhdCI6MTY4ODIzNDM3NCwiZXhwIjoxNjg4MjM3OTc0fQ.ys6C2KKCGq4xsUYNBluuTuxCjBQpchVoV_h0IbM9xEA
 
 {
-    "vote":"positive",
-    "review":"Top G business"
+    "vote":"negative",
+    "review":"Top Grade business"
 }
 
 ### TESTING

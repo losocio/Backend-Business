@@ -1,5 +1,5 @@
 const express = require("express")
-const { validatorCreateBusiness, validatorEditBusiness, validatorDeleteBusiness } = require("../middlewares/validatorBusiness.js")
+const { validatorCreateBusiness, validatorEditBusinessAdmin, validatorDeleteBusinessAdmin } = require("../middlewares/validatorBusiness.js")
 const { createBusiness, editBusiness, deleteBusiness } = require("../controllers/admin.js")
 const routerGetBusiness = require("./getBusiness.js")
 
@@ -11,10 +11,10 @@ routerAdmin.use(express.json())
 routerAdmin.post("/admin/createBusiness", validatorCreateBusiness, createBusiness) 
 
 // Edit preexisting business
-routerAdmin.patch("/admin/editBusiness", validatorEditBusiness, editBusiness)
+routerAdmin.patch("/admin/editBusiness", validatorEditBusinessAdmin, editBusiness)
 
 // Delete preexisting business
-routerAdmin.delete("/admin/deleteBusiness", validatorDeleteBusiness, deleteBusiness)
+routerAdmin.delete("/admin/deleteBusiness", validatorDeleteBusinessAdmin, deleteBusiness)
 
 // Get businesses in multiple ways
 routerAdmin.use("/admin", routerGetBusiness)

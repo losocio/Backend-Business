@@ -1,7 +1,8 @@
 ### Edit business data
 
-PATCH http://localhost:3000/api/business/updateBusiness?id=649ee0bb67d5d95e8b2ce970 HTTP/1.1
+PATCH http://localhost:3000/api/business/updateBusiness?id=64a055dc686f2bf337b1b8d9 HTTP/1.1
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGEwNTVkYzY4NmYyYmYzMzdiMWI4ZDkiLCJuYW1lIjoiSnVhbiBPY2lvIiwiZW1haWwiOiJwZXBvbmlAYW9sLmNvbSIsImlhdCI6MTY4ODIyOTM0MH0.lpAEoyz0witlzxjvkZp29V-oAGIv7TJv1KyV0iGkD-M
 
 {   
     "name": "new name",
@@ -14,8 +15,9 @@ Content-Type: application/json
 
 ### Edit business images
 
-PATCH http://localhost:3000/api/business/updateImages?id=649ee0bb67d5d95e8b2ce96f HTTP/1.1
+PATCH http://localhost:3000/api/business/updateImages?id=64a055dc686f2bf337b1b8d9 HTTP/1.1
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGEwNTVkYzY4NmYyYmYzMzdiMWI4ZDkiLCJuYW1lIjoiSnVhbiBPY2lvIiwiZW1haWwiOiJwZXBvbmlAYW9sLmNvbSIsImlhdCI6MTY4ODIyOTM0MH0.lpAEoyz0witlzxjvkZp29V-oAGIv7TJv1KyV0iGkD-M
 
 {
     "images":["http://dummyimage.com/yeoldeimage"]
@@ -23,8 +25,9 @@ Content-Type: application/json
 
 ### Edit business texts
 
-PATCH http://localhost:3000/api/business/updateTexts?id=649ee0bb67d5d95e8b2ce96f HTTP/1.1
+PATCH http://localhost:3000/api/business/updateTexts?id=64a047b1eb8fb39f163decb3 HTTP/1.1
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGEwNTVkYzY4NmYyYmYzMzdiMWI4ZDkiLCJuYW1lIjoiSnVhbiBPY2lvIiwiZW1haWwiOiJwZXBvbmlAYW9sLmNvbSIsImlhdCI6MTY4ODIyOTM0MH0.lpAEoyz0witlzxjvkZp29V-oAGIv7TJv1KyV0iGkD-M
 
 {
     "texts":["frikandelbroodje 4 life"]
@@ -32,15 +35,18 @@ Content-Type: application/json
 
 ### Delete business
 
-DELETE http://localhost:3000/api/business/deleteBusiness?id=649ee0bb67d5d95e8b2ce96f HTTP/1.1
+DELETE http://localhost:3000/api/business/deleteBusiness?id=64a055dc686f2bf337b1b8d9 HTTP/1.1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGEwNTVkYzY4NmYyYmYzMzdiMWI4ZDkiLCJuYW1lIjoiSnVhbiBPY2lvIiwiZW1haWwiOiJwZXBvbmlAYW9sLmNvbSIsImlhdCI6MTY4ODIyOTM0MH0.lpAEoyz0witlzxjvkZp29V-oAGIv7TJv1KyV0iGkD-M
 
 ### Get mailing list of users in same city
 
-GET http://localhost:3000/api/business/getMailingList?id=649c5c25c8c9e0d04bf0faea&activity=Education%20and%20Training HTTP/1.1
-
+GET http://localhost:3000/api/business/getMailingList?id=64a05f273a698fe82af67722&activity=Education%20and%20Training HTTP/1.1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGEwNWYyNzNhNjk4ZmU4MmFmNjc3MjIiLCJuYW1lIjoiSnVhbiBPY2lvIiwiZW1haWwiOiJwZXBvbmlAYW9sLmNvbSIsImlhdCI6MTY4ODIzMTcxOX0.WH7OtI85kquoWNEzdG-VuWM30jwQTR5VVK4UPuPq0bw
 
 ### TODO TESTING GET businesses that match a city and an activity ordered by score
 
 GET http://localhost:3000/api/admin/getBusiness/byCity&Activity?city=Lelystad&activity=Education%20and%20Training&order=score HTTP/1.1
+###
+GET http://localhost:3000/api/admin/getBusiness/byId?id=64a047b1eb8fb39f163decb3 HTTP/1.1
 ###
 GET http://localhost:3000/api/admin/getBusiness HTTP/1.1

@@ -76,14 +76,19 @@ const BusinessSchema = new mongoose.Schema(
     }
 )
 
+/*
 // Document middleware to calculate the "score" field before saving
+BusinessSchema.pre("save", (next) => {
+  this.score = Math.round(this.votesPositive / this.votes * 100)
+  next() 
+})
+
 BusinessSchema.pre("save", () => {
     if (this.votes && this.votesPositive) {
       this.score = Math.round((this.votesPositive / this.votes) * 100)
     }
 })
 
-/*
 // Virtual field, it get computed from other fields from the db
 BusinessSchema.virtual("score").get(() => {
     if (this.votes === 0) {
