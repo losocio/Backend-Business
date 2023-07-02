@@ -8,25 +8,134 @@ const {
 const { getBusiness, getBusinessById, getBusinessByCity, getBusinessByActivity, getBusinessByCityByActivity } = require("../controllers/getBusiness.js")
 
 const routerGetBusiness = express.Router()
-routerGetBusiness.use(express.json())
 
 // I don't need to specify queries in the routes
-// Each function will check if it need to order the data and will act accordingly (in this files controller)
+// Each function will check if it need to order the data and will act accordingly
 
-// GET all the businesses
+/**
+* @openapi
+* /api/admin/getBusiness:
+* get:
+*   tags:
+*   - GetBusiness
+*   summary: "getBusiness"
+*   description: Returns a list of all businesses, can be returned ordered by their score
+*   requestBody:
+*       content:
+*           application/json:
+*               schema:
+*                   $ref: "#/components/schemas/business"
+*   responses:
+*       '200':
+*           description: Returns a list of all businesses
+*       '400':
+*           description: Invalid order parameter
+*       '404':
+*           description: Business not found
+*   security:
+*   - bearerAuth: []
+*/
 routerGetBusiness.get("/getBusiness", validatorGetBusiness, getBusiness)
 
-// GET a business by it's id
+/**
+* @openapi
+* /api/admin/getBusinessById:
+* get:
+*   tags:
+*   - GetBusiness
+*   summary: "getBusinessById"
+*   description: Returns a business by it's id
+*   requestBody:
+*       content:
+*           application/json:
+*               schema:
+*                   $ref: "#/components/schemas/business"
+*   responses:
+*       '200':
+*           description: Returns a business by it's id
+*       '400':
+*           description: Invalid order parameter
+*       '404':
+*           description: Business not found
+*   security:
+*   - bearerAuth: []
+*/
 routerGetBusiness.get("/getBusiness/byId", validatorGetBusinessById, getBusinessById)
 
-// GET businesses that match a city
+/**
+* @openapi
+* /api/admin/getBusinessByCity:
+* get:
+*   tags:
+*   - GetBusiness
+*   summary: "getBusinessByCity"
+*   description: Returns a list of businesses by their city, can be returned ordered by their score
+*   requestBody:
+*       content:
+*           application/json:
+*               schema:
+*                   $ref: "#/components/schemas/business"
+*   responses:
+*       '200':
+*           description: Returns a list of businesses by their city
+*       '400':
+*           description: Invalid order parameter
+*       '404':
+*           description: Business not found
+*   security:
+*   - bearerAuth: []
+*/
 routerGetBusiness.get("/getBusiness/byCity", validatorGetBusinessByCity, getBusinessByCity)
 
-// GET businesses that match an activity
+/**
+* @openapi
+* /api/admin/getBusinessByActivity:
+* get:
+*   tags:
+*   - GetBusiness
+*   summary: "getBusinessByActivity"
+*   description: Returns a list of businesses by their activity, can be returned ordered by their score
+*   requestBody:
+*       content:
+*           application/json:
+*               schema:
+*                   $ref: "#/components/schemas/business"
+*   responses:
+*       '200':
+*           description: Returns a list of businesses by their activity
+*       '400':
+*           description: Invalid order parameter
+*       '404':
+*           description: Business not found
+*   security:
+*   - bearerAuth: []
+*/
 routerGetBusiness.get("/getBusiness/byActivity", validatorGetBusinessByActivity, getBusinessByActivity)
 
-// GET businesses that match a city and an activity
-routerGetBusiness.get("/getBusiness/byCity&Activity", validatorGetBusinessByCityByActivity, getBusinessByCityByActivity)
+/**
+* @openapi
+* /api/admin/getBusinessbyCityAndActivity:
+* get:
+*   tags:
+*   - GetBusiness
+*   summary: "getBusinessByCityByActivity"
+*   description: Returns a list of businesses by their city and activity, can be returned ordered by their score
+*   requestBody:
+*       content:
+*           application/json:
+*               schema:
+*                   $ref: "#/components/schemas/business"
+*   responses:
+*       '200':
+*           description: Returns a list of businesses by their city and activity
+*       '400':
+*           description: Invalid order parameter
+*       '404':
+*           description: Business not found
+*   security:
+*   - bearerAuth: []
+*/
+routerGetBusiness.get("/getBusiness/byCityAndActivity", validatorGetBusinessByCityByActivity, getBusinessByCityByActivity)
 
 
 module.exports = routerGetBusiness
@@ -41,50 +150,4 @@ module.exports = routerGetBusiness
 - [ ] GET business by their activity, ordered by page score
 - [ ] GET business by their city and activity
 - [ ] GET business by their city and activity, ordered by page score
-*/
-
-/*
-// GET all the businesses
-routerGetBusiness.get("/getBusiness", getBusiness)
-
-// GET all the businesses, ordered by score
-routerGetBusiness.get("/getBusiness?order=order", getBusiness)
-
-// GET a business by it's id
-routerGetBusiness.get("/getBusinessById", getBusinessById)
-
-// GET a business by it's id, ordered by score
-routerGetBusiness.get("/getBusinessById?id=id&order=order", getBusinessById)
-
-// GET businesses that match a city
-routerGetBusiness.get("/getBusinessByCity?city=city", getBusinessByCity)
-
-// GET businesses that match a city, ordered by score
-routerGetBusiness.get("/getBusinessByCity?city=city&order=order", getBusinessByCity)
-
-// GET businesses that match a city and an avtivity
-routerGetBusiness.get("/getBusinessByCityByActivity?city=city&activity=activity", getBusinessByCityByActivity)
-
-// GET businesses that match a city and an activity, ordered by score
-routerGetBusiness.get("/getBusinessByCityByActivity?city=city&activity=activity&order=order", getBusinessByCityByActivity)
-*/
-
-/*
-// GET a business by it's id
-routerGetBusiness.get("/getBusiness/:id", getBusiness)
-
-// GET a business by it's id, ordered by score
-routerGetBusiness.get("/getBusiness/:id", getBusiness)
-
-// GET businesses that match a city
-routerGetBusiness.get("/getBusiness/search/:city", getBusiness)
-
-// GET businesses that match a city, ordered by score
-routerGetBusiness.get("/getBusiness/search/:city", getBusiness)
-
-// GET businesses that match a city and an
-routerGetBusiness.get("/getBusiness/search/:city/:activity", getBusiness)
-
-// GET businesses that match a city and an, ordered by score
-routerGetBusiness.get("/getBusiness/search/:city/:activity", getBusiness)
 */

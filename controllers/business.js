@@ -13,11 +13,10 @@ const editBusiness = async (req, res) => {
         const businessTokenData = verifyToken(token)
 
         if(id !== businessTokenData._id) {
-            const error = new Error("ERROR_USER_LOGIN_WRONG_EMAIL")
-            error.statusCode = 40
+            const error = new Error("ERROR_BUSINESS_EDIT_NOT_PERMITED")
+            error.statusCode = 403
             throw error
         } 
-        //throw new Error("ERROR_BUSINESS_EDIT_NOT_PERMITED")
 
         const updatedBusiness = await Business.findOneAndUpdate(
             {_id: id}, 

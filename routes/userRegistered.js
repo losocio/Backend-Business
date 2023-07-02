@@ -5,15 +5,74 @@ const { editUser, deleteUser, voteBusiness } = require("../controllers/userRegis
 const routerGetBusiness = require("./getBusiness.js")
 
 const routerUserRegistered = express.Router()
-routerUserRegistered.use(express.json())
 
-// Edit user data
-routerUserRegistered.patch("/registeredUser/editUser", validatorEditUser, editUser) // TODO the problem has to do with the request, not the validator
+/**
+* @openapi
+* /api/registeredUser/editUser:
+* patch:
+*   tags:
+*   - RegisteredUser
+*   summary: "editUser"
+*   description: Edit the user's data. The user can only edit their own data
+*   requestBody:
+*       content:
+*           application/json:
+*               schema:
+*                   $ref: "#/components/schemas/user"
+*   responses:
+*       '200':
+*           description: Returns the updated user
+*       '403':
+*           description: User edit not permited
+*   security:
+*   - bearerAuth: []
+*/
+routerUserRegistered.patch("/registeredUser/editUser", validatorEditUser, editUser)
 
-// Delete user
-routerUserRegistered.delete("/registeredUser/deleteUser", validatorDeleteUser, deleteUser) // TODO Probably with JWT as identifier
+/**
+* @openapi
+* /api/registeredUser/deleteUser:
+* delete:
+*   tags:
+*   - RegisteredUser
+*   summary: "deleteUsers"
+*   description: Delete the user's account. The user can only delete their own account
+*   requestBody:
+*       content:
+*           application/json:
+*               schema:
+*                   $ref: "#/components/schemas/user"
+*   responses:
+*       '200':
+*           description: Returns the deleted user
+*       '403':
+*           description: User deletion not permited
+*   security:
+*   - bearerAuth: []
+*/
+routerUserRegistered.delete("/registeredUser/deleteUser", validatorDeleteUser, deleteUser)
 
-// Vote a business
+/**
+* @openapi
+* /api/registeredUser/voteBusiness:
+* patch:
+*   tags:
+*   - RegisteredUser
+*   summary: "voteBusiness"
+*   description: Vote on a business by it's id with an optional review
+*   requestBody:
+*       content:
+*           application/json:
+*               schema:
+*                   $ref: "#/components/schemas/business"
+*   responses:
+*       '200':
+*           description: Returns voted business
+*       '403':
+*           description: Vote not permited
+*   security:
+*   - bearerAuth: []
+*/
 routerUserRegistered.patch("/registeredUser/voteBusiness", validatorVoteBusiness, voteBusiness)
 
 // Get businesses in multiple ways

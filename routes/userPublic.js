@@ -4,12 +4,49 @@ const { registerUser, loginUser } = require("../controllers/userPublic.js")
 const routerGetBusiness = require("./getBusiness.js")
 
 const routerUserPublic = express.Router()
-routerUserPublic.use(express.json())
 
-// Register a new user
+/**
+* @openapi
+* /api/publicUser/registerUser:
+* post:
+*   tags:
+*   - PublicUser
+*   summary: "registerUser"
+*   description: Register a new user
+*   requestBody:
+*       content:
+*           application/json:
+*               schema:
+*                   $ref: "#/components/schemas/user"
+*   responses:
+*       '200':
+*           description: Returns new registered user
+*   security:
+*   - bearerAuth: []
+*/
 routerUserPublic.post("/publicUser/registerUser", validatorRegisterUser, registerUser)
 
-// Login a user
+/**
+* @openapi
+* /api/publicUser/loginUser:
+* get:
+*   tags:
+*   - PublicUser
+*   summary: "loginUser"
+*   description: Login a registered user, email and password must be correct
+*   requestBody:
+*       content:
+*           application/json:
+*               schema:
+*                   $ref: "#/components/schemas/user"
+*   responses:
+*       '200':
+*           description: Returns new logged in user
+*       '400':
+*           description: Wrong email or password
+*   security:
+*   - bearerAuth: []
+*/
 routerUserPublic.get("/publicUser/loginUser", validatorLoginUser, loginUser)
 
 // Get businesses in multiple ways

@@ -30,16 +30,16 @@ const BusinessSchema = new mongoose.Schema(
             type: String,
             enum: [
                 null,
-                'Retail',
-                'Food and Beverage',
-                'Professional Services',
-                'Health and Wellness',
-                'Hospitality and Tourism',
-                'Technology and Software',
-                'Manufacturing and Industrial',
-                'Arts and Entertainment',
-                'Education and Training',
-                'Financial and Banking'
+                "Retail",
+                "Food and Beverage",
+                "Professional Services",
+                "Health and Wellness",
+                "Hospitality and Tourism",
+                "Technology and Software",
+                "Manufacturing and Industrial",
+                "Arts and Entertainment",
+                "Education and Training",
+                "Financial and Banking"
             ]
         },
         title: {
