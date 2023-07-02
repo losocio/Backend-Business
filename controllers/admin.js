@@ -10,13 +10,12 @@ const createBusiness = async (req, res) => {
         const business = await Business.create(incomingData)
 
         const businessAndToken = {
-            token: signPermanentToken(business), // This token must be used in later requests
+            token: signPermanentToken(business),
             business
         }
         res.send(businessAndToken)
     } catch(err) {
-        // SLACK log I think
-        handleHTTPError(res, "ERROR_CREATE_BUSINESS")
+        handleHTTPError(res, "ERROR_CREATE_BUSINESS_BAD_REQUEST", 400)
     }
 }
 
@@ -32,8 +31,7 @@ const editBusiness = async (req, res) => {
         )        
         res.send(updatedBusiness)
     } catch(err) {
-        // SLACK log I think
-        handleHTTPError(res, "ERROR_EDIT_BUSINESS")
+        handleHTTPError(res, "ERROR_EDIT_BUSINESS_NOT_FOUND", 404)
     }
 }
 
@@ -45,8 +43,7 @@ const deleteBusiness = async (req, res) => {
 
         res.send(deletedBusiness)
     } catch(err){
-        // SLACK log I think
-        handleHTTPError(res, "ERROR_DELETE_BUSINESS")
+        handleHTTPError(res, "ERROR_DELETE_BUSINESS_NOT_FOUND", 404)
     }
 }
 

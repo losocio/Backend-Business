@@ -10,17 +10,31 @@ const getBusiness = async (req, res) => {
         switch(order) {
             case undefined:
                 const data = await Business.find(query)
-                res.send(data)
+                if(data) {
+                    res.send(data)
+                } else {
+                    const error = new Error("ERROR_BUSINESS_NOT_FOUND")
+                    error.statusCode = 404
+                    throw error
+                }
                 break
             case "score":
                 const dataToSort = await Business.find(query)
-                res.send(dataToSort.sort((a, b) => b.score - a.score))
+                if(dataToSort) {
+                    res.send(dataToSort.sort((a, b) => b.score - a.score))
+                } else {
+                    const error = new Error("ERROR_BUSINESS_NOT_FOUND")
+                    error.statusCode = 404
+                    throw error
+                }
                 break
-            default: throw new BadRequestError("Invalid order parameter")
+            default:
+                const error = new Error("ERROR_INVALID_ORDER_PARAMETER")
+                error.statusCode = 400
+                throw error
         }
     } catch(err) {
-        // SLACK log I think
-        handleHTTPError(res, "ERROR_GET_BUSINESS")
+        handleHTTPError(res, "ERROR_GET_BUSINESS", err.statusCode)
     }
 }
 
@@ -33,11 +47,12 @@ const getBusinessById = async (req, res) => {
         if (data) {
             res.send(data)
         } else {
-            throw new NotFoundError("Business not found")
+            const error = new Error("ERROR_BUSINESS_NOT_FOUND")
+            error.statusCode = 404
+            throw error
         }
     } catch(err) {
-        // SLACK log I think
-        handleHTTPError(res, "ERROR_GET_BUSINESS_BY_ID")
+        handleHTTPError(res, "ERROR_GET_BUSINESS_BY_ID", err.statusCode)
     }
 }
 
@@ -54,7 +69,9 @@ const getBusinessByCity = async (req, res) => {
                 if (data) {
                     res.send(data)
                 } else {
-                    throw new NotFoundError("Business not found")
+                    const error = new Error("ERROR_BUSINESS_NOT_FOUND")
+                    error.statusCode = 404
+                    throw error
                 }
                 break
             case "score":
@@ -62,13 +79,18 @@ const getBusinessByCity = async (req, res) => {
                 if (dataToSort) {
                     res.send(dataToSort.sort((a, b) => b.score - a.score))
                 } else {
-                    throw new NotFoundError("Business not found")
+                    const error = new Error("ERROR_BUSINESS_NOT_FOUND")
+                    error.statusCode = 404
+                    throw error
                 }
                 break
-            default: throw new BadRequestError("Invalid order parameter")
+            default: 
+                const error = new Error("ERROR_INVALID_ORDER_PARAMETER")
+                error.statusCode = 400
+                throw error
         }
     } catch(err) {
-        handleHTTPError(res, "ERROR_GET_BUSINESS_BY_CITY")
+        handleHTTPError(res, "ERROR_GET_BUSINESS_BY_CITY", err.statusCode)
     }
 }
 
@@ -85,7 +107,9 @@ const getBusinessByActivity = async (req, res) => {
                 if (data) {
                     res.send(data)
                 } else {
-                    throw new NotFoundError("Business not found")
+                    const error = new Error("ERROR_BUSINESS_NOT_FOUND")
+                    error.statusCode = 404
+                    throw error
                 }
                 break
             case "score":
@@ -93,13 +117,18 @@ const getBusinessByActivity = async (req, res) => {
                 if (dataToSort) {
                     res.send(dataToSort.sort((a, b) => b.score - a.score))
                 } else {
-                    throw new NotFoundError("Business not found")
+                    const error = new Error("ERROR_BUSINESS_NOT_FOUND")
+                    error.statusCode = 404
+                    throw error
                 }
                 break
-            default: throw new BadRequestError("Invalid order parameter")
+            default: 
+                const error = new Error("ERROR_INVALID_ORDER_PARAMETER")
+                error.statusCode = 400
+                throw error
         }
     } catch(err) {
-        handleHTTPError(res, "ERROR_GET_BUSINESS_BY_ACTIVITY")
+        handleHTTPError(res, "ERROR_GET_BUSINESS_BY_ACTIVITY", err.statusCode)
     }
 }
 
@@ -117,7 +146,9 @@ const getBusinessByCityByActivity = async (req, res) => {
                 if (data) {
                     res.send(data)
                 } else {
-                    throw new NotFoundError("Business not found")
+                    const error = new Error("ERROR_BUSINESS_NOT_FOUND")
+                    error.statusCode = 404
+                    throw error
                 }
                 break
             case "score":
@@ -125,13 +156,18 @@ const getBusinessByCityByActivity = async (req, res) => {
                 if (dataToSort) {
                     res.send(dataToSort.sort((a, b) => b.score - a.score))
                 } else {
-                    throw new NotFoundError("Business not found")
+                    const error = new Error("ERROR_BUSINESS_NOT_FOUND")
+                    error.statusCode = 404
+                    throw error
                 }
                 break
-            default: throw new BadRequestError("Invalid order parameter")
+            default: 
+                const error = new Error("ERROR_INVALID_ORDER_PARAMETER")
+                error.statusCode = 400
+                throw error
         }
     } catch(err) {
-        handleHTTPError(res, "ERROR_GET_BUSINESS_BY_CITY_BY_ACTIVITY")
+        handleHTTPError(res, "ERROR_GET_BUSINESS_BY_CITY_BY_ACTIVITY", err.statusCode)
     }
 }
 

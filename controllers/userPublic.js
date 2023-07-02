@@ -17,16 +17,7 @@ const registerUser = async (req, res) => {
 
         res.send(registeredUser)
     } catch(err) {
-        // SLACK log I think
-        handleHTTPError(res, "ERROR_REGISTER_USER")
-    }
-}
-
-class HTTPError extends Error {
-    constructor(message, statusCode) {
-        super(message)
-        this.statusCode = statusCode
-        this.name = "HTTPError"
+        handleHTTPError(res, "ERROR_REGISTER_USER", err.statusCode)
     }
 }
 
@@ -36,17 +27,25 @@ const loginUser = async (req, res) => {
         
         const user = await User.findOne({ email: data.email }).select("password name email")
         
-        if(!user) throw new HTTPError("ERROR_USER_NOT_FOUND", 404)
+        if(!user) {
+            const error = new Error("ERROR_USER_LOGIN_WRONG_EMAIL")
+            error.statusCode = 400
+            throw error
+        }
 
         const hashedPassword = user.password;
         const passwordCheck = await compare(data.password, hashedPassword)
         
-        if(!passwordCheck) throw new HTTPError("ERROR_INVALID_PASSWORD", 401)
+        if(!passwordCheck) {
+            const error = new Error("ERROR_USER_LOGIN_WRONG_PASSWORD")
+            error.statusCode = 400
+            throw error
+        }
 
         user.set("password", undefined, {strict:false})
         
         const userAndToken = {
-            token: signExpiringToken(user), // This token must be used in later requests
+            token: signExpiringToken(user),
             user
         }
         

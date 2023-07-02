@@ -11,8 +11,9 @@ router.use(routerBusiness)
 router.use(routerUserPublic)
 router.use(routerUserRegistered)
 
+module.exports = router 
 
-
+/*
 const User = require("../models/user.js")
 router.get("/getUsers", async (req, res) => {
     try {
@@ -26,4 +27,4 @@ router.get("/getUsers", async (req, res) => {
         handleHTTPError(res, "ERROR_GET_BUSINESS")
     }
 })
-module.exports = router
+*/

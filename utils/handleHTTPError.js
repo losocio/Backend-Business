@@ -1,5 +1,9 @@
-const handleHTTPError = (res, message, code = 403) => {
-    res.status(code).send(message)
+const { loggerStream } = require("./handleLogger.js")
+
+const handleHTTPError = (res, message, statusCode) => {
+    res.status(statusCode).send(message)
+
+    loggerStream(message, statusCode)
 }
 
 module.exports = { handleHTTPError }

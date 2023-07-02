@@ -1,8 +1,8 @@
 ### Edit user
 
-PATCH http://localhost:3000/api/registeredUser/editUser?id=64a004e916f8beefccfdd726 HTTP/1.1
+PATCH http://localhost:3000/api/registeredUser/editUser?id=64a0698288f4a8fbeb821960 HTTP/1.1
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGEwMDRlOTE2ZjhiZWVmY2NmZGQ3MjYiLCJuYW1lIjoiUmljIFBhbGFjaW9zIiwiZW1haWwiOiJycGFsYWNpb3NAdS10YWQuY29tIiwiaWF0IjoxNjg4MjEwNjU0LCJleHAiOjE2ODgyMTQyNTR9.YnL1EE8yIXGjF6Y3hxgQSnkKC5K5uVGR2l2te8mZVIw
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGEwNjk4Mjg4ZjRhOGZiZWI4MjE5NjEiLCJuYW1lIjoiUmljYXJkbyBQYWxhY2lvcyIsImVtYWlsIjoicnBhbGFjaW9zQHUtdGFkLmNvbSIsImlhdCI6MTY4ODI5MDEyNywiZXhwIjoxNjg4MjkzNzI3fQ.g_BDlNoWXTPJHc4Ruhrbx9X3nV-fpTBAQKKX4gtnYf0
 
 {
     "name":"Ric Palacios",
@@ -32,3 +32,5 @@ GET http://localhost:3000/api/getUsers HTTP/1.1
 ### 
 
 GET http://localhost:3000/api/admin/getBusiness HTTP/1.1
+
+###

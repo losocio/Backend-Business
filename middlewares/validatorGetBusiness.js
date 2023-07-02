@@ -1,13 +1,16 @@
 const { query } = require("express-validator")
 const { validateResult } = require("../utils/validateResult.js")
 
-// TODO Prof comment: No necesita validatorCreateBusiness porque ya está haciendo uso de Multer
 
-const validatorGetBusiness = [
-    query("order").optional().custom((value) => {
+/*
+query("order").optional().custom((value) => {
         if(value === "score") return true
         else return false
     }),
+*/
+
+const validatorGetBusiness = [
+    query("order").optional().isString(),
     (req, res, next) => {
         return validateResult(req, res, next)
     }
@@ -15,10 +18,7 @@ const validatorGetBusiness = [
 
 const validatorGetBusinessById = [
     query("id").exists().notEmpty().isMongoId(),
-    query("order").optional().custom((value) => {
-        if(value === "score") return true
-        else return false
-    }),
+    query("order").optional().isString(),
     (req, res, next) => {
         return validateResult(req, res, next)
     }
@@ -26,10 +26,7 @@ const validatorGetBusinessById = [
 
 const validatorGetBusinessByCity = [
     query("city").exists().notEmpty().isString(),
-    query("order").optional().custom((value) => {
-        if(value === "score") return true
-        else return false
-    }),
+    query("order").optional().isString(),
 
     (req, res, next) => {
         return validateResult(req, res, next)
@@ -50,10 +47,7 @@ const validatorGetBusinessByActivity = [
             'Financial and Banking'].includes(value)) return true
         else return false
     }),
-    query("order").optional().custom((value) => {
-        if(value === "score") return true
-        else return false
-    }),
+    query("order").optional().isString(),
 
     (req, res, next) => {
         return validateResult(req, res, next)
@@ -75,10 +69,7 @@ const validatorGetBusinessByCityByActivity = [
             'Financial and Banking'].includes(value)) return true
         else return false
     }),
-    query("order").optional().custom((value) => {
-        if(value === "score") return true
-        else return false
-    }),
+    query("order").optional().isString(),
 
     (req, res, next) => {
         return validateResult(req, res, next)

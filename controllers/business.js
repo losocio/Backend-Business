@@ -12,7 +12,12 @@ const editBusiness = async (req, res) => {
 
         const businessTokenData = verifyToken(token)
 
-        if(id !== businessTokenData._id) throw new Error("ERROR_BUSINESS_EDIT_NOT_PERMITED")
+        if(id !== businessTokenData._id) {
+            const error = new Error("ERROR_USER_LOGIN_WRONG_EMAIL")
+            error.statusCode = 40
+            throw error
+        } 
+        //throw new Error("ERROR_BUSINESS_EDIT_NOT_PERMITED")
 
         const updatedBusiness = await Business.findOneAndUpdate(
             {_id: id}, 
@@ -27,8 +32,7 @@ const editBusiness = async (req, res) => {
         )        
         res.send(updatedBusiness)
     } catch(err) {
-        // SLACK log I think
-        handleHTTPError(res, err.message)
+        handleHTTPError(res, err.message, err.statusCode)
     }
 }
 
@@ -39,14 +43,17 @@ const deleteBusiness = async (req, res) => {
 
         const businessTokenData = verifyToken(token)
 
-        if(id !== businessTokenData._id) throw new Error("ERROR_BUSINESS_DELETE_NOT_PERMITED")
+        if(id !== businessTokenData._id) {
+            const error = new Error("ERROR_BUSINESS_DELETE_NOT_PERMITED")
+            error.statusCode = 403
+            throw error
+        }
 
         const deletedBusiness = await Business.findOneAndDelete({_id:id})
 
         res.send(deletedBusiness)
     } catch(err){
-        // SLACK log I think
-        handleHTTPError(res, err.message)
+        handleHTTPError(res, err.message, err.statusCode)
     }
 }
 
@@ -58,7 +65,11 @@ const editImages = async (req, res) => {
 
         const businessTokenData = verifyToken(token)
 
-        if(id !== businessTokenData._id) throw new Error("ERROR_BUSINESS_IMAGE_EDIT_NOT_PERMITED")
+        if(id !== businessTokenData._id) {
+            const error = new Error("ERROR_BUSINESS_IMAGE_EDIT_NOT_PERMITED")
+            error.statusCode = 403
+            throw error
+        }
 
         const preBusiness = await Business.findById(id)
 
@@ -73,8 +84,7 @@ const editImages = async (req, res) => {
         )        
         res.send(updatedBusiness)
     } catch(err) {
-        // SLACK log I think
-        handleHTTPError(res, err.mesage)
+        handleHTTPError(res, err.mesage, err.statusCode)
     }
 }
 
@@ -86,7 +96,11 @@ const editTexts = async (req, res) => {
 
         const businessTokenData = verifyToken(token)
 
-        if(id !== businessTokenData._id) throw new Error("ERROR_BUSINESS_TEXTS_EDIT_NOT_PERMITED")
+        if(id !== businessTokenData._id) {
+            const error = new Error("ERROR_BUSINESS_TEXTS_EDIT_NOT_PERMITED")
+            error.statusCode = 403
+            throw error
+        }
         
         const preBusiness = await Business.findById(id)
 
@@ -100,8 +114,7 @@ const editTexts = async (req, res) => {
         )        
         res.send(updatedBusiness)
     } catch(err) {
-        // SLACK log I think
-        handleHTTPError(res, err.message)
+        handleHTTPError(res, err.message, err.statusCode)
     }
 }
 
@@ -113,7 +126,11 @@ const getMailingList = async (req, res) => {
 
         const businessTokenData = verifyToken(token)
 
-        if(id !== businessTokenData._id) throw new Error("ERROR_GET_MAILING_LIST")
+        if(id !== businessTokenData._id) {
+            const error = new Error("ERROR_GET_MAILING_LIST")
+            error.statusCode = 400
+            throw error
+        }
 
         const business = await Business.findById(id)
 
@@ -127,8 +144,7 @@ const getMailingList = async (req, res) => {
         
         res.send({"emails": mailingListEmails})
     } catch(err) {
-        // SLACK log I think
-        handleHTTPError(res, err.message)
+        handleHTTPError(res, err.message, err.statusCode)
     }
 }
 

@@ -23,7 +23,7 @@ Content-Type: application/json
 
 ### Edit business
 
-PATCH http://localhost:3000/api/admin/editBusiness?id=64a06a7088f4a8fbeb82196f HTTP/1.1
+PATCH http://localhost:3000/api/admin/editBusiness?id=64a06a7088f4a8fbeb82296f HTTP/1.1
 Content-Type: application/json
 
 {

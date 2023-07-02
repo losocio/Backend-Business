@@ -12,7 +12,11 @@ const editUser = async (req, res) => {
 
         const userTokenData = verifyToken(token)
         
-        if(id !== userTokenData._id) throw new Error("ERROR_USER_EDIT_NOT_PERMITED")
+        if(id !== userTokenData._id) {
+            const error = new Error("ERROR_USER_EDIT_NOT_PERMITED")
+            error.statusCode = 403
+            throw error
+        }
 
         const updatedUser = await User.findOneAndUpdate(
             {_id: userTokenData._id}, 
@@ -21,8 +25,7 @@ const editUser = async (req, res) => {
         )        
         res.send(updatedUser)
     } catch(err) {
-        // SLACK log I think
-        handleHTTPError(res, err.message) 
+        handleHTTPError(res, err.message, err.statusCode) 
     }
 }
 
@@ -33,26 +36,33 @@ const deleteUser = async (req, res) => {
 
         const userTokenData = verifyToken(token)
 
-        if(id !== userTokenData._id) throw new Error("ERROR_USER_DELETE_NOT_PERMITED")
+        if(id !== userTokenData._id) {
+            const error = new Error("ERROR_USER_DELETE_NOT_PERMITED")
+            error.statusCode = 403
+            throw error
+        }
 
         const deletedUser = await User.findOneAndDelete({_id: userTokenData._id})
 
         res.send(deletedUser)
     } catch(err){
-        // SLACK log I think
-        handleHTTPError(res, err.message)
+        handleHTTPError(res, err.message, err.statusCode)
     }
 }
 
-const voteBusiness = async (req, res) => {  // TODO NEEDS token
+const voteBusiness = async (req, res) => {
     try{
         const id = matchedData(req, { locations: ["query"] }).id
         const { vote, review } = matchedData(req, { locations: ["body"] })
         const token = matchedData(req, { locations: ["headers"] }).authorization
 
         const validToken = verifyToken(token)
-        console.log(validToken)
-        if(validToken === false) throw new Error("ERROR_VOTE_BUSINESS") // TODO check what it return so this works, right now it always triggers
+
+        if(validToken === false) {
+            const error = new Error("ERROR_VOTE_NOT_PERMITED")
+            error.statusCode = 401
+            throw error
+        }
 
         const businessToVote = await Business.findById(id)
 
@@ -73,11 +83,9 @@ const voteBusiness = async (req, res) => {  // TODO NEEDS token
 
         res.send(votedBusiness)
     } catch(err){
-        // SLACK log I think
-        handleHTTPError(res, err.message)
+        handleHTTPError(res, err.message, err.statusCode)
     }
 }
-
 
 module.exports = {
     editUser,
