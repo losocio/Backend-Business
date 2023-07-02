@@ -13,9 +13,9 @@ const options = {
           url: "https://spdx.org/licenses/MIT.html",
         },
         contact: {
-          name: "u-tad",
-          url: "https://u-tad.com",
-          email: "alvaro.ocio@live.u-tad.com",
+          name: "Name",
+          url: "https://website.com",
+          email: "email@gmail.com",
         },
       },
       servers: [
@@ -37,7 +37,7 @@ const options = {
                 properties: {
                     name: {
                         type: "string",
-                        example: "Alvaro de Ocio"
+                        example: "Jane Doe"
                     },
                     cif: {
                         type: "string",
@@ -49,7 +49,7 @@ const options = {
                     },
                     email: {
                         type: "string",
-                        example: "alvaro.ocio@live.u-tad.com"
+                        example: "jane.doe@gmail.com"
                     },
                     phone: {
                         type: "string",
@@ -89,11 +89,11 @@ const options = {
                     },
                     score: {
                         type: "number",
-                        example: "88"
+                        example: 88
                     },
                     reviews: {
                         type: ["string"],
-                        example: "Great business"
+                        example: ["Great business"]
                     }
                 },
             },
@@ -103,15 +103,15 @@ const options = {
                 properties: {
                     name: {
                         type: "string",
-                        example: "Juan de Ocio"
+                        example: "Will Smith"
                     },
                     email: {
                         type: "string",
-                        example: "juandeocio@gmail.com"
+                        example: "willsmith@gmail.com"
                     },
                     age: {
                         type: "number",
-                        example: "20"
+                        example: 20
                     },
                     password: {
                         type: "string",
@@ -119,7 +119,7 @@ const options = {
                     },
                     city: {
                         type: "string",
-                        example: "Madrid"
+                        example: "Washington"
                     },
                     interests: {
                         type: "string",
@@ -127,14 +127,21 @@ const options = {
                     },
                     receivesOffers: {
                         type: "boolean",
-                        example: "false"
+                        example: false
                     }
                 }
             }
         },
       },
     },
-    apis: ["./routes/*.js"],
+    apis: [
+        "/home/losocio/Repos/Backend-Business/routes/index.js", 
+        "/home/losocio/Repos/Backend-Business/routes/admin.js", 
+        "/home/losocio/Repos/Backend-Business/routes/business.js", 
+        "/home/losocio/Repos/Backend-Business/routes/getBusiness.js", 
+        "/home/losocio/Repos/Backend-Business/routes/userPublic.js", 
+        "/home/losocio/Repos/Backend-Business/routes/userRegistered.js"
+    ],
   };
   
 module.exports = swaggerJsdoc(options)

@@ -9,118 +9,117 @@ const { editBusiness, deleteBusiness, editImages, editTexts, getMailingList } = 
 const routerBusiness = express.Router()
 
 /**
-* @openapi
-* /api/business/updateBusiness:
-* patch:
-*   tags:
-*   - Business
-*   summary: "editBusiness"
-*   description: Update business data
-*   requestBody:
+* @swagger
+*  /api/business/updateBusiness:
+*   patch:
+*     tags:
+*     - "Business"
+*     summary: "editBusiness"
+*     description: Update business data
+*     requestBody:
 *       content:
-*           application/json:
-*               schema:
-*                   $ref: "#/components/schemas/business"
-*   responses:
+*         application/json:
+*           schema:
+*             $ref: "#/components/schemas/business"
+*     responses:
 *       '200':
-*           description: Returns the updated business
+*         description: Returns the updated business
 *       '403':
-*           description: Business edit not permited
-*   security:
-*   - bearerAuth: []
+*         description: Business edit not permited
+*     security:
+*     - bearerAuth: []
 */
 routerBusiness.patch("/business/updateBusiness", validatorEditBusiness, editBusiness) 
 
 /**
-* @openapi
-* /api/business/updateImages:
-* patch:
-*   tags:
-*   - Business
-*   summary: "editImages"
-*   description: Add new images to business
-*   requestBody:
+* @swagger
+*  /api/business/updateImages:
+*   patch:
+*     tags:
+*     - Business
+*     summary: "editImages"
+*     description: Add new images to business
+*     requestBody:
 *       content:
-*           application/json:
-*               schema:
-*                   $ref: "#/components/schemas/business"
-*   responses:
+*         application/json:
+*           schema:
+*             $ref: "#/components/schemas/business"
+*     responses:
 *       '200':
-*           description: Returns the updated business with new images
+*         description: Returns the updated business with new images
 *       '403':
-*           description: Business image edit not permited
-*   security:
-*   - bearerAuth: []
+*         description: Business image edit not permited
+*     security:
+*     - bearerAuth: []
 */
 routerBusiness.patch("/business/updateImages", validatorEditImages, editImages)
 
 /**
-* @openapi
-* /api/business/updateTexts:
-* patch:
-*   tags:
-*   - Business
-*   summary: "editTexts"
-*   description: Add new texts to business
-*   requestBody:
+* @swagger
+*  /api/business/updateTexts:
+*   patch:
+*     tags:
+*     - Business
+*     summary: "editTexts"
+*     description: Add new texts to business
+*     requestBody:
 *       content:
-*           application/json:
-*               schema:
-*                   $ref: "#/components/schemas/business"
-*   responses:
+*         application/json:
+*           schema:
+*             $ref: "#/components/schemas/business"
+*     responses:
 *       '200':
-*           description: Returns the updated business with new texts
+*         description: Returns the updated business with new texts
 *       '403':
-*           description: Business text edit not permited
-*   security:
-*   - bearerAuth: []
+*         description: Business text edit not permited
+*     security:
+*     - bearerAuth: []
 */
 routerBusiness.patch("/business/updateTexts", validatorEditTexts, editTexts)
 
 /**
-* @openapi
-* /api/business/deleteBusiness:
-* delete:
-*   tags:
-*   - Business
-*   summary: "deleteBusiness"
-*   description: Delete business
-*   requestBody:
+* @swagger
+*  /api/business/deleteBusiness:
+*   delete:
+*     tags:
+*     - Business
+*     summary: "deleteBusiness"
+*     description: Delete business
+*     requestBody:
 *       content:
-*           application/json:
-*               schema:
-*                   $ref: "#/components/schemas/business"
-*   responses:
+*         application/json:
+*           schema:
+*             $ref: "#/components/schemas/business"
+*     responses:
 *       '200':
-*           description: Returns the deleted business
+*         description: Returns the deleted business
 *       '403':
-*           description: Business deletion not permited
-*   security:
-*   - bearerAuth: []
+*         description: Business deletion not permited
+*     security:
+*     - bearerAuth: []
 */
 routerBusiness.delete("/business/deleteBusiness", validatorDeleteBusiness, deleteBusiness)
 
 /**
-* @openapi
-* /api/business/getMailingList:
-* get:
-*   tags:
-*   - Business
-*   summary: "getMailingList"
-*   description: Get a list of emails of all users in the same city as the business with a given interest
-*   requestBody:
-*       content:
-*           application/json:
-*               schema:
-*                   $ref: "#/components/schemas/business"
-*                   $ref: "#/components/schemas/user"
-*   responses:
-*       '200':
-*           description: Returns the mailing list
-*       '400':
-*           description: Error get mailing list, wrong id
-*   security:
-*   - bearerAuth: []
+* @swagger
+*  /api/business/getMailingList:
+*    get:
+*      tags:
+*      - Business
+*      summary: "getMailingList"
+*      description: Get a list of emails of all users in the same city as the business with a given interest
+*      requestBody:
+*        content:
+*          application/json:
+*            schema:
+*              $ref: "#/components/schemas/business"
+*      responses:
+*        '200':
+*          description: Returns the mailing list
+*        '400':
+*          description: Error get mailing list, wrong id
+*      security:
+*      - bearerAuth: []
 */
 routerBusiness.get("/business/getMailingList", validatorGetMailingList, getMailingList)
 

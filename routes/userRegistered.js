@@ -8,70 +8,70 @@ const routerUserRegistered = express.Router()
 
 /**
 * @openapi
-* /api/registeredUser/editUser:
-* patch:
-*   tags:
-*   - RegisteredUser
-*   summary: "editUser"
-*   description: Edit the user's data. The user can only edit their own data
-*   requestBody:
+*  /api/registeredUser/editUser:
+*   patch:
+*     tags:
+*     - RegisteredUser
+*     summary: "editUser"
+*     description: Edit the user's data. The user can only edit their own data
+*     requestBody:
 *       content:
-*           application/json:
-*               schema:
-*                   $ref: "#/components/schemas/user"
-*   responses:
+*         application/json:
+*           schema:
+*             $ref: "#/components/schemas/user"
+*     responses:
 *       '200':
-*           description: Returns the updated user
+*         description: Returns the updated user
 *       '403':
-*           description: User edit not permited
-*   security:
-*   - bearerAuth: []
+*         description: User edit not permited
+*     security:
+*     - bearerAuth: []
 */
 routerUserRegistered.patch("/registeredUser/editUser", validatorEditUser, editUser)
 
 /**
 * @openapi
-* /api/registeredUser/deleteUser:
-* delete:
-*   tags:
-*   - RegisteredUser
-*   summary: "deleteUsers"
-*   description: Delete the user's account. The user can only delete their own account
-*   requestBody:
+*  /api/registeredUser/deleteUser:
+*   delete:
+*     tags:
+*     - RegisteredUser
+*     summary: "deleteUsers"
+*     description: Delete the user's account. The user can only delete their own account
+*     requestBody:
 *       content:
-*           application/json:
-*               schema:
-*                   $ref: "#/components/schemas/user"
-*   responses:
+*         application/json:
+*           schema:
+*             $ref: "#/components/schemas/user"
+*     responses:
 *       '200':
-*           description: Returns the deleted user
+*         description: Returns the deleted user
 *       '403':
-*           description: User deletion not permited
-*   security:
-*   - bearerAuth: []
+*         description: User deletion not permited
+*     security:
+*     - bearerAuth: []
 */
 routerUserRegistered.delete("/registeredUser/deleteUser", validatorDeleteUser, deleteUser)
 
 /**
 * @openapi
-* /api/registeredUser/voteBusiness:
-* patch:
-*   tags:
-*   - RegisteredUser
-*   summary: "voteBusiness"
-*   description: Vote on a business by it's id with an optional review
-*   requestBody:
+*  /api/registeredUser/voteBusiness:
+*   patch:
+*     tags:
+*     - RegisteredUser
+*     summary: "voteBusiness"
+*     description: Vote on a business by it's id with an optional review
+*     requestBody:
 *       content:
-*           application/json:
-*               schema:
-*                   $ref: "#/components/schemas/business"
-*   responses:
+*         application/json:
+*           schema:
+*             $ref: "#/components/schemas/business"
+*     responses:
 *       '200':
-*           description: Returns voted business
+*         description: Returns voted business
 *       '403':
-*           description: Vote not permited
-*   security:
-*   - bearerAuth: []
+*         description: Vote not permited
+*     security:
+*     - bearerAuth: []
 */
 routerUserRegistered.patch("/registeredUser/voteBusiness", validatorVoteBusiness, voteBusiness)
 

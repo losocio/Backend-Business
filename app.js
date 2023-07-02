@@ -24,5 +24,5 @@ app.use("/api", router)
 
 const port = process.env.PORT
 app.listen(port, () => {
-    console.log("Servidor iniciado en el puerto" , port)
+    console.log("Server started on port", port)
 })

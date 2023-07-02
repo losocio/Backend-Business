@@ -14,126 +14,126 @@ const routerGetBusiness = express.Router()
 
 /**
 * @openapi
-* /api/admin/getBusiness:
-* get:
-*   tags:
-*   - GetBusiness
-*   summary: "getBusiness"
-*   description: Returns a list of all businesses, can be returned ordered by their score
-*   requestBody:
+*  /api/admin/getBusiness:
+*   get:
+*     tags:
+*     - GetBusiness
+*     summary: "getBusiness"
+*     description: Returns a list of all businesses, can be returned ordered by their score
+*     requestBody:
 *       content:
-*           application/json:
-*               schema:
-*                   $ref: "#/components/schemas/business"
-*   responses:
+*         application/json:
+*           schema:
+*             $ref: "#/components/schemas/business"
+*     responses:
 *       '200':
-*           description: Returns a list of all businesses
+*         description: Returns a list of all businesses
 *       '400':
-*           description: Invalid order parameter
+*         description: Invalid order parameter
 *       '404':
-*           description: Business not found
-*   security:
-*   - bearerAuth: []
+*         description: Business not found
+*     security:
+*     - bearerAuth: []
 */
 routerGetBusiness.get("/getBusiness", validatorGetBusiness, getBusiness)
 
 /**
 * @openapi
-* /api/admin/getBusinessById:
-* get:
-*   tags:
-*   - GetBusiness
-*   summary: "getBusinessById"
-*   description: Returns a business by it's id
-*   requestBody:
+*  /api/admin/getBusinessById:
+*   get:
+*     tags:
+*     - GetBusiness
+*     summary: "getBusinessById"
+*     description: Returns a business by it's id
+*     requestBody:
 *       content:
-*           application/json:
-*               schema:
-*                   $ref: "#/components/schemas/business"
-*   responses:
+*         application/json:
+*           schema:
+*             $ref: "#/components/schemas/business"
+*     responses:
 *       '200':
-*           description: Returns a business by it's id
+*         description: Returns a business by it's id
 *       '400':
-*           description: Invalid order parameter
+*         description: Invalid order parameter
 *       '404':
-*           description: Business not found
-*   security:
-*   - bearerAuth: []
+*         description: Business not found
+*     security:
+*     - bearerAuth: []
 */
 routerGetBusiness.get("/getBusiness/byId", validatorGetBusinessById, getBusinessById)
 
 /**
 * @openapi
-* /api/admin/getBusinessByCity:
-* get:
-*   tags:
-*   - GetBusiness
-*   summary: "getBusinessByCity"
-*   description: Returns a list of businesses by their city, can be returned ordered by their score
-*   requestBody:
+*  /api/admin/getBusinessByCity:
+*   get:
+*     tags:
+*     - GetBusiness
+*     summary: "getBusinessByCity"
+*     description: Returns a list of businesses by their city, can be returned ordered by their score
+*     requestBody:
 *       content:
-*           application/json:
-*               schema:
-*                   $ref: "#/components/schemas/business"
-*   responses:
+*         application/json:
+*           schema:
+*             $ref: "#/components/schemas/business"
+*     responses:
 *       '200':
-*           description: Returns a list of businesses by their city
+*         description: Returns a list of businesses by their city
 *       '400':
-*           description: Invalid order parameter
+*         description: Invalid order parameter
 *       '404':
-*           description: Business not found
-*   security:
-*   - bearerAuth: []
+*         description: Business not found
+*     security:
+*     - bearerAuth: []
 */
 routerGetBusiness.get("/getBusiness/byCity", validatorGetBusinessByCity, getBusinessByCity)
 
 /**
 * @openapi
-* /api/admin/getBusinessByActivity:
-* get:
-*   tags:
-*   - GetBusiness
-*   summary: "getBusinessByActivity"
-*   description: Returns a list of businesses by their activity, can be returned ordered by their score
-*   requestBody:
+*  /api/admin/getBusinessByActivity:
+*   get:
+*     tags:
+*     - GetBusiness
+*     summary: "getBusinessByActivity"
+*     description: Returns a list of businesses by their activity, can be returned ordered by their score
+*     requestBody:
 *       content:
-*           application/json:
-*               schema:
-*                   $ref: "#/components/schemas/business"
-*   responses:
+*         application/json:
+*           schema:
+*             $ref: "#/components/schemas/business"
+*     responses:
 *       '200':
-*           description: Returns a list of businesses by their activity
+*         description: Returns a list of businesses by their activity
 *       '400':
-*           description: Invalid order parameter
+*         description: Invalid order parameter
 *       '404':
-*           description: Business not found
-*   security:
-*   - bearerAuth: []
+*         description: Business not found
+*     security:
+*     - bearerAuth: []
 */
 routerGetBusiness.get("/getBusiness/byActivity", validatorGetBusinessByActivity, getBusinessByActivity)
 
 /**
 * @openapi
-* /api/admin/getBusinessbyCityAndActivity:
-* get:
-*   tags:
-*   - GetBusiness
-*   summary: "getBusinessByCityByActivity"
-*   description: Returns a list of businesses by their city and activity, can be returned ordered by their score
-*   requestBody:
+*  /api/admin/getBusinessbyCityAndActivity:
+*   get:
+*     tags:
+*     - GetBusiness
+*     summary: "getBusinessByCityByActivity"
+*     description: Returns a list of businesses by their city and activity, can be returned ordered by their score
+*     requestBody:
 *       content:
-*           application/json:
-*               schema:
-*                   $ref: "#/components/schemas/business"
-*   responses:
+*         application/json:
+*           schema:
+*             $ref: "#/components/schemas/business"
+*     responses:
 *       '200':
-*           description: Returns a list of businesses by their city and activity
+*         description: Returns a list of businesses by their city and activity
 *       '400':
-*           description: Invalid order parameter
+*         description: Invalid order parameter
 *       '404':
-*           description: Business not found
-*   security:
-*   - bearerAuth: []
+*         description: Business not found
+*     security:
+*     - bearerAuth: []
 */
 routerGetBusiness.get("/getBusiness/byCityAndActivity", validatorGetBusinessByCityByActivity, getBusinessByCityByActivity)
 

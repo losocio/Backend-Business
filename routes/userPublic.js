@@ -7,45 +7,45 @@ const routerUserPublic = express.Router()
 
 /**
 * @openapi
-* /api/publicUser/registerUser:
-* post:
-*   tags:
-*   - PublicUser
-*   summary: "registerUser"
-*   description: Register a new user
-*   requestBody:
+*  /api/publicUser/registerUser:
+*   post:
+*     tags:
+*     - PublicUser
+*     summary: "registerUser"
+*     description: Register a new user
+*     requestBody:
 *       content:
-*           application/json:
-*               schema:
-*                   $ref: "#/components/schemas/user"
-*   responses:
+*         application/json:
+*           schema:
+*             $ref: "#/components/schemas/user"
+*     responses:
 *       '200':
-*           description: Returns new registered user
-*   security:
-*   - bearerAuth: []
+*         description: Returns new registered user
+*     security:
+*     - bearerAuth: []
 */
 routerUserPublic.post("/publicUser/registerUser", validatorRegisterUser, registerUser)
 
 /**
 * @openapi
-* /api/publicUser/loginUser:
-* get:
-*   tags:
-*   - PublicUser
-*   summary: "loginUser"
-*   description: Login a registered user, email and password must be correct
-*   requestBody:
+*  /api/publicUser/loginUser:
+*   get:
+*     tags:
+*     - PublicUser
+*     summary: "loginUser"
+*     description: Login a registered user, email and password must be correct
+*     requestBody:
 *       content:
-*           application/json:
-*               schema:
-*                   $ref: "#/components/schemas/user"
-*   responses:
+*         application/json:
+*           schema:
+*             $ref: "#/components/schemas/user"
+*     responses:
 *       '200':
-*           description: Returns new logged in user
+*         description: Returns new logged in user
 *       '400':
-*           description: Wrong email or password
-*   security:
-*   - bearerAuth: []
+*         description: Wrong email or password
+*     security:
+*     - bearerAuth: []
 */
 routerUserPublic.get("/publicUser/loginUser", validatorLoginUser, loginUser)
 

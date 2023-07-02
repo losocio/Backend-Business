@@ -60,7 +60,7 @@ const voteBusiness = async (req, res) => {
 
         if(validToken === false) {
             const error = new Error("ERROR_VOTE_NOT_PERMITED")
-            error.statusCode = 401
+            error.statusCode = 403
             throw error
         }
 
