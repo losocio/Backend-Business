@@ -4,7 +4,7 @@ POST http://localhost:3000/api/admin/createBusiness HTTP/1.1
 Content-Type: application/json
 
 {
-    "name": "Juan Ocio",
+    "name": "Pepe Flores",
     "cif": "123456789",
     "address": "C/ Mercurio, 23",
     "email": "peponi@aol.com",
